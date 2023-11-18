@@ -8,6 +8,7 @@ use App\Models\Folder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -21,58 +22,32 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Login
     public function login()
     {
         return view('components.login.index');
     }
 
-    function Auth(Request $request)
+
+    function logout()
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ], [
-            'username.required' => 'Username wajib diisi',
-            'password.required' => 'Password wajib diisi',
-        ]);
-
-        $infologin = [
-            'username' => $request->username,
-            'password' => $request->password,
-        ];
-
-        $data = admin::where($infologin)->first();
-        if($data == null){
-            $data = staf::where('username', $request->username)->first();
-            $level = "staf";
-            $username = $data->username;
-            $role = $data->role;
-            session(['username' => $username]);
-            session(['role' => $role]);
-            session(['level' => $level]);
-            return redirect()->route('/');
-
-        } else if($data != null){
-            $level = $data->level;
-            $username = $data->username;
-            $role = $data->role;
-            session(['username' => $username]);
-            session(['role' => $role]);
-            session(['level' => $level]);
-            return redirect()->route('/');
+        if (Auth::guard('staf')->check()) {
+            Auth::guard('staf')->logout();
+            return redirect('/login');
+        } elseif (Auth::guard('web')->check()) {
+            Auth::guard('web')->logout();
+            return redirect('/login');
         }
     }
-    function logout(){
-        session()->flush();
-        return redirect('/');
-    }
+    //endlogin
 
+    //AddStaff
     public function tambahstaf()
     {
         return view('components.akun.tambah_staf');
     }
 
-    function create(Request $request)
+    public function create(Request $request)
     {
         // $request->validate([
         //     'username' => 'required|min:3',
@@ -86,51 +61,92 @@ class AdminController extends Controller
         //     'password.min' => 'Password min 8 Digit',
         // ]);
 
+        $adminRole = Auth::user()->role;
+
         staf::create([
             'username' => $request['username'],
             'nama_lengkap' => $request['nama_lengkap'],
             'password' => Hash::make($request['password']),
-            'role' => $request['role'],
-            'level' => 'staf',
+            'role' => $adminRole,
+            'level' => 'Staff',
         ]);
 
         return redirect('/tambahStaf');
-
     }
-    public function createFolder(Request $request)
+    public function listStaf()
     {
-        Folder::create([
-            'nama_folder' => $request['nama_folder'],
-            'role'  => $request['role']
-        ]);
-
-        return view('content.Admin.index');
-    }
-    function listStaf() {
         $data = staf::all();
         return view('content.Admin.tableStaf', ['data' => $data]);
     }
 
 
 
-    public function editStaf($id) {
+    public function editStaf($id)
+    {
         $data = staf::find($id);
-        return view('content.Admin.editStaf', [
+        return view('content.Admin.tableStaf', [
             'data' => $data
         ]);
     }
 
-    function updateStaf(Request $request, $id) {
+    public function updateStaf(Request $request, $id)
+    {
         $data = staf::find($id);
-        $data->update($request->all());
+        $data->update($request->only(['username', 'nama_lengkap', 'role', 'level']));
 
         return redirect('/tambahStaf');
     }
 
-    function deleteStaf($id) {
-        $data = staf::find($id);
+    public function deleteStaf($id)
+    {
+        $data = staf::findOrFail($id);
         $data->delete();
 
         return redirect('/tambahStaf');
+    }
+
+    //endAddStaff
+    
+    //AddFolder
+    public function createFolder(Request $request)
+    {
+        $stafRole = Auth::user()->role;
+        
+        Folder::create([
+            'nama_folder' => $request['nama_folder'],
+            'role'  => $stafRole,
+        ]);
+        
+        return view('content.Admin.index');
+    }
+    
+    public function showFolder()
+    {
+        $folder = Folder::all();
+        return view('content.Admin.index', ['folder' => $folder]);
+    }
+
+    public function editFolder($id)
+    {
+        $folder = Folder::find($id);
+        return view('content.Admin.index', [
+            'folder' => $folder
+        ]);
+    }
+
+    public function updateFolder(Request $request, $id)
+    {
+        $folder = FOlder::find($id);
+        $folder->update($request->all());
+
+        return redirect('/');
+    }
+
+    public function deleteFolder($id)
+    {
+        $folder = Folder::findOrFail($id);
+        $folder->delete();
+
+        return redirect('/');
     }
 }

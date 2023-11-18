@@ -62,15 +62,13 @@
 <body class="bg-slate-950 overflow-hidden">
 
   <div class="w-screen ">
-    @if (session()->get('level') == 'SuperAdmin')
-    <nav class="border-gray-400 bg-gray-800  ">
-      <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-14 h-14 rounded-full cursor-pointer  mx-auto mr-2" src="img/smk2.png" alt="User dropdown">
-
-      <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
-        <svg class="w-6 h-6 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-          <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-        </svg>
+    @if ( Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'SuperAdmin')
+    <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
+      <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
+        <i class="mdi mdi-menu text-white text-3xl"></i>
       </span>
+      <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-10 h-10 cursor-pointer " src="img/smk2.png" alt="User dropdown">
+  
     </nav>
 
   </div>
@@ -101,21 +99,12 @@
       <input type="text" placeholder="search" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none">
     </div>
 
-    <a href="#">
+    <a href="{{ route('/') }}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
         </svg>
         <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
-      </div>
-    </a>
-
-    <a href="#">
-      <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-          <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
-        </svg>
-        <span class="text-[15px] ml-4 text-gray-200">Staff</span>
       </div>
     </a>
 
@@ -125,6 +114,15 @@
           <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
         </svg>
         <span class="text-[15px] ml-4 text-gray-200">Admin</span>
+      </div>
+    </a>
+
+    <a href="{{  route('listStaf') }}">
+      <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+          <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
+        </svg>
+        <span class="text-[15px] ml-4 text-gray-200">Staff</span>
       </div>
     </a>
 
@@ -151,15 +149,13 @@
 
 
   </div>
-  @elseif (session()->get('level') == 'Admin')
-  <nav class="border-gray-400 bg-gray-800   ">
-    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-14 h-14 rounded-full cursor-pointer  mx-auto mr-2" src="img/smk2.png" alt="User dropdown">
-
-    <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
-      <svg class="w-6 h-6 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-      </svg>
+  @elseif (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'Admin')
+  <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
+    <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
+      <i class="mdi mdi-menu text-white text-3xl"></i>
     </span>
+    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-10 h-10 cursor-pointer " src="img/smk2.png" alt="User dropdown">
+
   </nav>
 
   </div>
@@ -184,7 +180,7 @@
       <input type="text" placeholder="search" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none">
     </div>
 
-    <a href="#">
+    <a href="/">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
@@ -202,7 +198,7 @@
       </div>
     </a>
 
-    <a href="createFolder">
+    <a href="/showFolder">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
           <path d="M18 5H0v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5Zm-7.258-2L9.092.8a2.009 2.009 0 0 0-1.6-.8H2.049a2 2 0 0 0-2 2v1h10.693Z" />
@@ -226,7 +222,7 @@
 
 
   </div>
-  @elseif (session()->get('level') == 'staf')
+  @elseif (Auth::guard('staf')->check() && Auth::guard('staf')->user()->level == 'Staff')
   <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
     <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
       <i class="mdi mdi-menu text-white text-3xl"></i>
@@ -263,7 +259,7 @@
       </div>
     </a>
 
-    <a href="#folder">
+    <a href="">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
         <i class="mdi mdi-server text-2xl">

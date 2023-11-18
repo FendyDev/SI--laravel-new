@@ -24,7 +24,7 @@
                 <!-- Sign In Form -->
                 <div class="flex flex-col overflow-hidden rounded-lg bg-white shadow-sm dark:bg-gray-800 dark:text-gray-100">
                     <div class="grow p-5 md:px-16 md:py-12">
-                        <form class="space-y-6" action="{{ route('Auth') }}" method="POST">
+                        <form class="space-y-6" action="/Auth" method="POST">
                             @csrf
                             <div class="space-y-1">
                                 <label for="userName" class="text-sm font-medium">Username</label>

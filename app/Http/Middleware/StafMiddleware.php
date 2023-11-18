@@ -16,7 +16,7 @@ class StafMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->get('level') == 'staf') {
+        if (session()->get('level') == 'Staff') {
             return $next($request);
         } else {
             return redirect('/');

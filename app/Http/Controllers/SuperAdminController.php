@@ -22,7 +22,7 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        return view('content.SuperAdmin.tableAdmin');
+        return view('content.SuperAdmin.index');
     }
 
     /**
@@ -66,17 +66,19 @@ class SuperAdminController extends Controller
         return redirect()->route('lihat')->with('success', 'Berhasil Menambahkan Data');
     }
 
-    public function lihat(admin $admin)
+    public function lihat()
     {
-        $admin = admin::all();
+        $admin = admin::where('level', 2)->get();
         return view('content.SuperAdmin.tableAdmin', ['admin' => $admin]);
-
     }
 
-    public function edit(admin $admin, $id)
+    public function edit($id)
     {
         $admin = admin::findOrFail($id);
-        return view('content.SuperAdmin.tableAdmin');
+        // dd($admin);
+        return view('content.SuperAdmin.tableAdmin', [
+            'admin' => $admin,
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -89,11 +91,16 @@ class SuperAdminController extends Controller
         //     'username.min' => 'Bidang username minimal harus 3 karakter.',
         //     'nama_lengkap.required' => 'nama lengkap Wajib Di isi',
         // ]);
-        $admin->update($request->all());
+        $admin = admin::findOrFail($id);
+        $admin->update($request->only(['username', 'nama_lengkap', 'role', 'level']));
+        $admin->save();
+
+        return redirect()->route('lihat')->with('success', 'Berhasil Mengedit Data');
     }
 
-    public function destroy(admin $admin, $id)
+    public function destroy($id)
     {
+        $admin = admin::findOrFail($id);
         $admin->delete();
         return redirect()->route('lihat')->with('success', 'Berhasil Menghapus Data');
     }

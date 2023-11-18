@@ -2,39 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\Admin;
+use App\Models\staf;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Routing\Controller as BaseController;
-
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, ValidatesRequests;
+    public function Auth(Request $request)
+    {   
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ], [
+            'username.required' => 'Username wajib diisi',
+            'password.required' => 'Password wajib diisi',
+        ]);
+
+    
+        $users = $request->only('username', 'password');
+
+        if (Auth::guard('web')->attempt($users)) {
+            return redirect()->route('/');
+        }elseif (Auth::guard('staf')->attempt($users)) {
+            return redirect()->route('/');
+        }else{
+            return $users;
+        }
+
+
+    }
+
     public function index()
     {
-        if (session()->has('level') != null) {
-            if (session()->get('level') == 'staf') {
-                return view('content.staff.index', [
-                    'title' => 'staff',
-                ]);
-            }
-            else if (session()->get('level') == 'Admin') {
+        if (Auth::guard('web')->check() || Auth::guard('staf')->check()) {
+            if (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'Admin') {
                 return view('content.admin.index', [
                     'title' => 'Admin'
                 ]);
             }
-            else if (session()->get('level') == 'SuperAdmin') {
+            else if (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'SuperAdmin') {
                 return view('content.SuperAdmin.index', [
-                    'title' => 'Admin'
+                    'title' => 'SuperAdmin'
                 ]);
             }
+            else if (Auth::guard('staf')->check() && Auth::guard('staf')->user()->level == 'Staff') {
+                return view('content.staff.index', [
+                        'title' => 'Staff',
+                    ]);
+            }else{
+                return redirect()->route('login');
+            }
             
-        }else{
-            return view('components.login.index', [
-                'title' => 'Home',
-            ]);
         }
+
     }
+
     public function admin()
     {
         return view('components.login.admin', [

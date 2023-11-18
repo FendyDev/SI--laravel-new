@@ -33,7 +33,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                                     <input type="text" name="username" id="username"
                                         class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="Username" required="">
+                                        placeholder="Username" required>
                                 </div>
                                 <div class="w-full">
                                     <label for="nama_lengkap"
@@ -41,21 +41,21 @@
                                         Lengkap</label>
                                     <input type="text" name="nama_lengkap" id="nama_lengkap"
                                     class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Nama Lengkap" required="">
-                                </div>{{  }}
+                                    placeholder="Nama Lengkap" required>
+                                </div>
                                 <div class="w-full">
                                     <label for="rl"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
                                     <input type="text" name="role" id="rl"
                                     class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Role" required="">
-                                </div>{{  }}
+                                    placeholder="Role" required>
+                                </div>
                                 <div class="sm:col-span-2">
                                     <label for="pw"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                     <input type="password" name="password" id="pw"
                                     class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Password" required="">
+                                    placeholder="Password" required>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="disabled-input-2"
@@ -92,7 +92,7 @@
                             </ul>
                         </div>
                         @endif
-                        <form action="{{ route('store') }}" method="POST">
+                        <form action="{{ route('update') }}" method="POST">
                             @csrf
                             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                 <div class="sm:col-span-2">
@@ -100,7 +100,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                                     <input type="text" name="username" id="username"
                                         class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="Username" required="">
+                                        placeholder="Username" required>
                                 </div>
                                 <div class="w-full">
                                     <label for="nama_lengkap"
@@ -108,21 +108,14 @@
                                         Lengkap</label>
                                     <input type="text" name="nama_lengkap" id="nama_lengkap"
                                     class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Nama Lengkap" required="">
+                                    placeholder="Nama Lengkap" required>
                                 </div>
                                 <div class="w-full">
                                     <label for="rl"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
                                     <input type="text" name="role" id="rl"
                                     class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Role" required="">
-                                </div>
-                                <div class="sm:col-span-2">
-                                    <label for="pw"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" id="pw"
-                                    class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Password" required="">
+                                    placeholder="Role" required>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="disabled-input-2"

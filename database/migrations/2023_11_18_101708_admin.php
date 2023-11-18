@@ -13,13 +13,13 @@ class Admin extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('username', 200)->unique();
             $table->string('nama_lengkap', 50);
             $table->string('password', 100);
             $table->string('role', 15);
-            $table->enum('level',['SuperAdmin', 'Admin']);
+            $table->enum('level', ['SuperAdmin', 'Admin']);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class Admin extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('admins');
     }
 }
