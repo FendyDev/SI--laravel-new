@@ -10,19 +10,39 @@
                     <!-- Dropdown menu -->
 
                     <div class="flex flex-col items-center pb-10">
-                        <button id="btn"
-                            class="w-24 h-24 mb-3 hover:bg-gray-100 rounded-full bg-gray-500 border border-blue-500 shadow-lg">
+                        <button id="btn" data-bs-target="#tambahRapat" data-bs-toggle="modal" data-bs-toggle="modal" class="w-24 h-24 mb-3 hover:bg-gray-100 rounded-full bg-gray-500 border border-blue-500 shadow-lg">
                             <svg class="w-10 h-10 m-auto text-black dark:text-black" aria-hidden="true" viewBox="0 0 18 18">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                                     d="M9 1v16M1 9h16" />
                             </svg>
                         </button>
                         <h5 class="mb-1 text-xl mt-3 font-medium text-white dark:text-white">Tambahkan Hasil Rapat</h5>
+                        
                     </div>
                 </div>
             </div>
 
-
+            <!-- Modal -->
+            <div class="modal fade" id="tambahRapat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-white bg-dark ">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Upload File Rapat</h1>
+                        </div>
+                        <div class="modal-body text-white bg-dark ">
+                            <form action="" method="">
+                                    <div class="mb-3">
+                                        <input class="form-control" type="file" id="formFile">
+                                    </div>
+                                <div class="modal-footer mt-3">
+                                    <button type="submit" class="btn btn-success">Kirim</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
             <div

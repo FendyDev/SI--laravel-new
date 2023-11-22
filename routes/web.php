@@ -19,7 +19,6 @@ use App\Http\Controllers\SuperAdminController;
 
 //? Default Route
 Route::get('/', [Controller::class, 'index'])->name('/');
-
 Route::redirect('home','login');
 
 //! Route for Authentication
@@ -39,31 +38,30 @@ Route::middleware(['checkRole:SuperAdmin, web'])->group(function () {
    Route::put('/updateAdmin/{id}', [SuperAdminController::class, 'update'])->name('update');
    Route::delete('/deleteAdmin/{id}', [SuperAdminController::class, 'destroy'])->name('delete');
    
-   Route::get('/tambahStaf', [SUperAdminController::class, 'indexStaf'])->name('view');
-   Route::post('/tambahStaf/create', [SUperAdminController::class, 'tambah'])->name('tambah');
-   Route::get('/editStaf/{id}', [SUperAdminController::class, 'ubahStaf'])->name('ubahStaf');
-   Route::put('/updateStaf/{id}', [SUperAdminController::class, 'gantiStaf'])->name('gantiStaf');
-   Route::delete('/deleteStaf/{id}', [SUperAdminController::class, 'hapusStaf'])->name('hapusStaf');
 });
 
 //? Route for Admin
 Route::middleware(['checkRole:Admin, web'])->group(function () {
-   //Add Staf
+   //View Folder
+   Route::get('/inFolder{id}', [AdminController::class, 'inFolder'])->name('inFolder');
+   //Add File
+   
+});
+
+//? Route for Super Admin and Admin
+Route::middleware('web')->group(function () {
+   //Add Staff
    Route::get('/tambahStaf', [AdminController::class, 'listStaf'])->name('listStaf');
    Route::post('/tambahStaf/create', [AdminController::class, 'create'])->name('createStaf');
    Route::get('/editStaf/{id}', [AdminController::class, 'editStaf'])->name('editStaf');
    Route::put('/updateStaf/{id}', [AdminController::class, 'updateStaf'])->name('updateStaf');
    Route::delete('/deleteStaf/{id}', [AdminController::class, 'deleteStaf'])->name('deleteStaf');
-   
    //Add Folder
    Route::get('/showFolder', [AdminController::class, 'index'])->name('showFolder');
    Route::post('/createFolder', [AdminController::class, 'createFolder'])->name('createFolder');
    Route::get('/editFolder/{id}', [AdminController::class, 'editFolder'])->name('editFolder');
    Route::put('/updateFolder/{id}', [AdminController::class, 'updateFolder'])->name('updateFolder');
    Route::delete('/deleteFolder/{id}', [AdminController::class, 'deleteFolder'])->name('deleteFolder');
-
-   //Add File
-   Route::get('inFolder', [AdminController::class, 'inFolder'])->name('inFolder');
 });
 
 //? Route for Staf

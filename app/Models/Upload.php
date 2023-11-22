@@ -5,13 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class Upload extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'nama_folder',
-        'nama_file',
-        'role'
-    ];
 }

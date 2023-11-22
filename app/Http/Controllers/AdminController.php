@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\staf;
 use App\Models\admin;
 use App\Models\Folder;
+use App\Models\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -41,54 +42,62 @@ class AdminController extends Controller
     }
     //endlogin
 
-    //AddStaff
-    public function tambahstaf()
-    {
-        return view('components.akun.tambah_staf');
-    }
-
+    //CRUD Staff SuperAdmin and Admin
     public function create(Request $request)
     {
-        // $request->validate([
-        //     'username' => 'required|min:3',
-        //     'nama_lengkap' => 'required',
-        //     'password' => 'required|min:8',
-        // ], [
-        //     'username.required' => 'Username Wajib Di isi',
-        //     'username.min' => 'Bidang username minimal harus 3 karakter.',
-        //     'nama_lengkap.required' => 'nama lengkap Wajib Di isi',
-        //     'password.required' => 'Password Wajib Di isi',
-        //     'password.min' => 'Password min 8 Digit',
-        // ]);
-
-        $adminRole = Auth::user()->role;
-
-        staf::create([
-            'username' => $request['username'],
-            'nama_lengkap' => $request['nama_lengkap'],
-            'password' => bcrypt($request['password']),
-            'role' => $adminRole,
-            'level' => 'Staff',
+        $request->validate([
+            'username' => 'required|min:3',
+            'nama_lengkap' => 'required',
+            'password' => 'required|min:8',
+        ], [
+            'username.required' => 'Username Wajib Di isi',
+            'username.min' => 'Bidang username minimal harus 3 karakter.',
+            'nama_lengkap.required' => 'nama lengkap Wajib Di isi',
+            'password.required' => 'Password Wajib Di isi',
+            'password.min' => 'Password min 8 Digit',
         ]);
+
+        $cek = Auth::guard('web')->user()->level;
+
+        if($cek == 'SuperAdmin') {
+            staf::create([
+                'username' => $request['username'],
+                'nama_lengkap' => $request['nama_lengkap'],
+                'password' => bcrypt($request['password']),
+                'role' => $request['role'],
+                'level' => 'Staff',
+            ]);
+            
+        }
+        if($cek == 'Admin') {
+            $adminRole = Auth::user()->role;
+    
+            staf::create([
+                'username' => $request['username'],
+                'nama_lengkap' => $request['nama_lengkap'],
+                'password' => bcrypt($request['password']),
+                'role' => $adminRole,
+                'level' => 'Staff',
+            ]);
+            
+        }
 
         return redirect('/tambahStaf')->with('status', 'Berhasil Menambahkan Akun');
     }
+
     public function listStaf()
     {
-        // if ($role) {
-        //     $data = staf::where('role', $role)->get();
-        // } else {
-        //     $data = staf::all();
-        // }
+        if(Auth::guard('web')->user()->level == 'SuperAdmin') {
+            $data = staf::all();
 
-        $role = Auth::guard('web')->user()->role;
-        $data = staf::where('role', $role)->get();
-
-        // $data = staf::where('role', $role)->get();
-        // if ($data = $role) {
-            
-        // }
-        return view('content.Admin.tableStaf', ['data' => $data]);
+            return view('content.SuperAdmin.tableStaff', ['data' => $data]);
+        }
+        if(Auth::guard('web')->user()->level == 'Admin') {
+            $role = Auth::guard('web')->user()->role;
+            $data = staf::where('role', $role)->get();
+    
+            return view('content.Admin.tableStaf', ['data' => $data]);
+        }
     }
 
     public function editStaf($id)
@@ -115,9 +124,9 @@ class AdminController extends Controller
         return redirect('/tambahStaf')->with('delete', 'Berhasil Menghapus Akun');
     }
 
-    //endAddStaff
+    //endStaff
 
-    //AddFolder
+    //CRUD Folder
     public function createFolder(Request $request)
     {
         $stafRole = Auth::user()->role;
@@ -126,11 +135,7 @@ class AdminController extends Controller
             'nama_folder' => $request['nama_folder'],
             'role'  => $stafRole,
         ]);
-        $data_folder = Folder::all();
-
-        return view('content.Admin.index', [
-            'folder' => $data_folder
-        ]);
+        return redirect()->route('/');
     }
 
 
@@ -159,10 +164,58 @@ class AdminController extends Controller
         return redirect('/');
     }
 
-    public function inFolder()
+    public function inFolder($id)
     {
-        // $folder = Folder::find($id);
+        $folder = Folder::find($id);
         return view('content.Admin.folder',[
+            'folder' => $folder
         ]);
     }
+
+    // //CRUD File
+    // public function createFile(Request $request)
+    // {
+    //     $stafRole = Auth::user()->role;
+
+    //     File::create([
+    //         'nama_folder' => $request['nama_folder'],
+    //         'nama_file' => $request['nama_file'],
+    //         'role'  => $stafRole,
+    //     ]);
+    //     return redirect()->route('inFolder');
+    // }
+
+
+
+    // public function editFile($id)
+    // {
+    //     $File = File::find($id);
+    //     return view('content.Admin.index', [
+    //         'File' => $File
+    //     ]);
+    // }
+
+    // public function updateFile(Request $request, $id)
+    // {
+    //     $File = File::find($id);
+    //     $File->update($request->all());
+
+    //     return redirect('inFolder');
+    // }
+
+    // public function deleteFile($id)
+    // {
+    //     $File = File::findOrFail($id);
+    //     $File->delete();
+
+    //     return redirect('inFolder');
+    // }
+
+    // public function inFile($id)
+    // {
+    //     $File = File::find($id);
+    //     return view('content.Admin.folder',[
+    //         'File' => $File
+    //     ]);
+    // }
 }

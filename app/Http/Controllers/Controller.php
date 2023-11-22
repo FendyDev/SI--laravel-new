@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\staf;
 use App\Models\Folder;
+use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,17 +36,17 @@ class Controller extends BaseController
         } else {
             return $users;
         }
-       
     }
 
     public function index()
     {
         if (Auth::guard('web')->check() || Auth::guard('staf')->check()) {
             if (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'Admin') {
-                $data = Folder::all();
+                $role = Auth::guard('web')->user()->role;
+                $data = Folder::where('role', $role)->get();
                 return view('content.Admin.index', [
                     'title' => 'Admin',
-                    'folder' =>$data
+                    'folder' => $data,
                 ]);
             } else if (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'SuperAdmin') {
                 return view('content.SuperAdmin.index', [
@@ -68,7 +69,8 @@ class Controller extends BaseController
         ]);
     }
 
-    public function server(){
+    public function server()
+    {
         $data_folder = Folder::Where('role', Auth::guard('staf')->user()->role)->get();
         return view('content.staff.server', [
             'title' => 'Server',

@@ -1,12 +1,49 @@
 @extends('layouts.main')
 @section('container')
-    <div class="container mx-auto ">
+    <div class="container px-5 mx-auto ">
         <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 dark:text-white">Data Staff</h2>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tambah Akun
+            Add Account
         </button>
-        
+
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ session('status') }}
+            </div>
+        @endif
+        @if (session('delete'))
+            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ session('delete') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-error">
+            </div>
+            {{ session('error') }}
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        {{-- @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif --}}
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -16,16 +53,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Create Staff</h1>
                     </div>
                     <div class="modal-body text-white bg-dark ">
-                        {{-- @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif --}}
-                        <form action="/tambahStaf/create" method="POST">
+                        <form action="{{ url('/tambahStaf/create') }}" method="POST">
                             @csrf
                             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                 <div class="sm:col-span-2">
@@ -50,24 +78,13 @@
                                         class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Password" required>
                                 </div>
-                                @if (session()->get('level') == 'SuperAdmin')
-                                    <div class="w-full">
-                                        <label for="rl"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <input type="text" name="role" id="rl"
-                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Status" required>
-                                    </div>
-                                @else
-                                    <div class="w-full">
-                                        <label for="disabled-input-2"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <input type="text" name="level" id="disabled-input-2"
-                                            aria-label="disabled input 2"
-                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="{{ Auth::user()->role }}" disabled readonly>
-                                    </div>
-                                @endif
+                                <div class="w-full">
+                                    <label for="rl"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                    <input type="text" name="role" id="rl"
+                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="Status" required>
+                                </div>
                                 <div class="w-full">
                                     <label for="disabled-input-2"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
@@ -77,8 +94,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer mt-3">
-                                <button type="submit" class="btn btn-primary">Tambah Akun</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
                             </div>
                         </form>
                     </div>
@@ -86,6 +103,15 @@
             </div>
         </div>
 
+        {{-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif --}}
 
         @foreach ($data as $a)
             <!-- Modal Edit-->
@@ -97,15 +123,6 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Admin</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
-                            {{-- @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif --}}
                             <form action="{{ route('updateStaf', $a->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -125,36 +142,25 @@
                                             class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="Nama Lengkap" value="{{ $a->nama_lengkap }}" required>
                                     </div>
-                                    @if (session()->get('level') == 'SuperAdmin')
-                                        <div class="w-full">
-                                            <label for="rl"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                            <input type="text" name="role" id="rl"
-                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Status" required>
-                                        </div>
-                                    @else
-                                        <div class="w-full">
-                                            <label for="disabled-input-2"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                            <input type="text" name="level" id="disabled-input-2"
-                                                aria-label="disabled input 2"
-                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                value="{{ Auth::user()->role }}" disabled readonly>
-                                        </div>
-                                    @endif
+                                    <div class="w-full">
+                                        <label for="rl"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                        <input type="text" name="role" id="rl"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Status" value="{{ $a->role }}" required>
+                                    </div>
                                     <div class="w-full">
                                         <label for="disabled-input-2"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
                                         <input type="text" name="level" id="disabled-input-2"
                                             aria-label="disabled input 2"
                                             class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="Staff" disabled readonly>
+                                            value="{{ $a->level }}" disabled readonly>
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-primary">Edit Akun</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success">Edit Account</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
                                 </div>
                             </form>
                         </div>
@@ -165,10 +171,6 @@
 
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            {{-- <a href="/tambahStaf">
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah Staf</button>
-        </a>
-         --}}
 
             <table id="dt" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

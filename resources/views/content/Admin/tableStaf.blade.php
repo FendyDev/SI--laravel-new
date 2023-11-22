@@ -1,39 +1,39 @@
 @extends('layouts.main')
 @section('container')
-    <div class="container mx-auto ">
+    <div class="container px-5 mx-auto ">
         <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 dark:text-white">Data Staff</h2>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tambah Akun
+            Add Account
         </button>
-        @if (session('status'))
-        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-            <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
-            {{ session('status') }}
-        </div>
-    @endif
-    @if (session('delete'))
-        <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-            <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
-            {{ session('delete') }}
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-error">
-        </div>
-        {{ session('error') }}
-    @endif
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
         
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ session('status') }}
+            </div>
+        @endif
+        @if (session('delete'))
+            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ session('delete') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-error">
+            </div>
+            {{ session('error') }}
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,8 +104,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer mt-3">
-                                <button type="submit" class="btn btn-primary">Tambah Akun</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
                             </div>
                         </form>
                     </div>
@@ -180,8 +180,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-primary">Edit Akun</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success">Edit Account</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
                                 </div>
                             </form>
                         </div>
@@ -197,7 +197,7 @@
         </a>
          --}}
 
-            <table id="dt" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table id="dt" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 stripe">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">

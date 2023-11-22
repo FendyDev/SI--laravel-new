@@ -5,7 +5,7 @@
             <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 dark:text-white">Data Admin</h2>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdmin">
-                Tambah Akun +
+                Add Account
             </button>
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -26,7 +26,8 @@
                 {{ session('error') }}
             @endif
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                    <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -43,7 +44,7 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Create Admin</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
-                            <form action="{{ route('store') }}" method="POST">
+                            <form action="{{ route('store') }}" method="POST" class="needs-validation" novalidate>
                                 @csrf
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                     <div class="sm:col-span-2">
@@ -52,6 +53,11 @@
                                         <input type="text" name="username" id="username"
                                             class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="Username" required>
+                                            <div class="invalid-feedback">
+                                                @if ($errors)
+                                                    {{ $errors }}
+                                                @endif
+                                            </div>
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="nama_lengkap"
@@ -85,8 +91,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
                                 </div>
                             </form>
                         </div>
@@ -149,9 +155,9 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer mt-3">
-                                        <button type="submit" class="btn btn-primary edit">Edit Akun</button>
+                                        <button type="submit" class="btn btn-success edit">Edit Account</button>
                                         <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">Batal</button>
+                                            data-bs-dismiss="modal">Back</button>
                                     </div>
                                 </form>
                             </div>

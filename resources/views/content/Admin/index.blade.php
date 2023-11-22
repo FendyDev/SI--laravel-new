@@ -1,33 +1,40 @@
 @extends('layouts.main')
 @section('container')
     <div class="flex-col mt-5 ml-5 items-start justify-start  container mx-auto">
-        <!-- <img src="img3.jpeg" class="w-32 rounded-lg mb-5"> -->
-        <div class="flex  max-w-sm ml-7 mt-3 ">
-            <button id="btn34" type="button"
-                class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 1v16M1 9h16" />
-                </svg>
-                <span>
-                    Tambah Folder
-                </span>
-            </button>
-        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdmin">
+            Add Folder
+        </button>
 
+        {{-- <div class="relative">
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+                <input type="text" id="table-search-users"
+                    class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search for users">
+            </div>
+        </div> --}}
 
         <div class="relative overflow-x-auto shadow-md mt-3 w-full mx-auto sm:rounded-lg">
             <div
                 class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                 <div>
-                    <!-- <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
-                                                      <span class="sr-only">Action button</span>
-                                                      Action
-                                                      <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                                                      </svg>
-                                                  </button> -->
+                    {{-- <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
+                        class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                        type="button">
+                        <span class="sr-only">Action button</span>
+                        Action
+                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button> --}}
                     <!-- Dropdown menu -->
                     <div id="dropdownAction"
                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
@@ -53,15 +60,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <label for="table-search" class="sr-only">Search</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                    </svg>
-                                    <input type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
-                                </div>
-                            </div> -->
                 <table class="w-full text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -116,7 +114,7 @@
                                         </linearGradient>
                                         <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hc_WWogVNJDSfZ5_gr3)"
                                             d="M2,26h20V12H4c-1.105,0-2,0.895-2,2V26z"></path>
-                                   <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4" x1="16.865"
+                                        <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4" x1="16.865"
                                             x2="44.965" y1="39.287" y2="39.792" gradientUnits="userSpaceOnUse">
                                             <stop offset="0" stop-color="#e3a917"></stop>
                                             <stop offset=".464" stop-color="#d79c1e"></stop>
@@ -150,7 +148,7 @@
 
                                 </th>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('inFolder') }}">
+                                    <a href="{{ route('inFolder', $b->id) }}">
                                         {{ $b->nama_folder }}
                                     </a>
                                 </td>
@@ -165,7 +163,7 @@
                                         @if (isset($b->id))
                                             <a href="{{ route('editFolder', $b->id) }}"
                                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#edit-"{{ $b->id }}">
+                                                data-bs-toggle="modal" data-bs-target="#edit-{{ $b->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path
@@ -195,83 +193,91 @@
             </div>
 
             {{-- ADD FOLDER --}}
-            <div id="modals" class="flex items-center justify-center hidden">
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true">
-                    <div class="flex flex-col mx-auto pt-28 ">
-                        <div
-                            class="w-full mx-auto max-w-sm p-4 bg-gray-900 border border-gray-200 rounded-[20px] justify-items-center">
-                            <h5 class="text-xl font-medium text-white dark:text-white mb-4  text-center">MENAMBAHKAN </h5>
-                            <form class="space-y-2" action="{{ route('createFolder') }}" method="POST">
+            <div class="modal fade" id="tambahAdmin" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-white bg-dark ">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create Folder</h1>
+                        </div>
+                        <div class="modal-body text-white bg-dark ">
+                            <form action="{{ route('createFolder') }}" method="POST" class="needs-validation"
+                                novalidate>
                                 @csrf
-                                <label for="username" class="block tecxt-sm font-medium text-white dark:text-white">Nama
-                                    Folder :</label>
-                                <div class="grid justify-items-center">
-                                    <input name="nama_folder" type="text" placeholder="usernameme"
-                                        class="h-9 form-input w-full bwhitent border-yellow-600 py-3 px-3 rounded-lg outline-none texblackte dark:texblackte">
+                                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
+                                    <div class="sm:col-span-2">
+                                        <label for="username"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                            Folder</label>
+                                        <input type="text" name="nama_folder" id="username"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Folder Name" required>
+                                    </div>
+                                    <div class="hidden sm:col-span-2">
+                                        <label for="disabled-input-2"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                        <input type="text" name="role" id="disabled-input-2"
+                                            aria-label="disabled input 2"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            value="{{ Auth::user()->role }}" disabled readonly>
+                                    </div>
                                 </div>
-                                <!-- <label for="username" class="block text-sm font-medium text-white dark:text-white">role :</label> -->
-
-                                <input type="hidden" value="{{ session()->get('role') }}" name="role">
-
-                                <button type="submit"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                    Tambah
-                                </button>
-                                <a href="/" id="batals"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-white rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-red-600">Batal
-                                </a>
-                                <!-- <button type="submit" class="w-20 h-8 font-bold bg-blue-600 rounded-lg py-3 ">login</button> -->
-                                <!-- <button type="submit" class="items-center w-50 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login </button>    -->
+                                <div class="modal-footer mt-3">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            {{-- EDIT FOLDER --}}
+            @foreach ($folder as $new)
+                <div class="modal fade" id="edit-{{ $new->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-white bg-dark ">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Folder</h1>
+                            </div>
+                            <div class="modal-body text-white bg-dark ">
+                                <form action="{{ route('updateFolder', $new->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
+                                        <div class="sm:col-span-2">
+                                            <label for="username"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                                Folder</label>
+                                            <input type="text" name="nama_folder" id="username"
+                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="Folder Name" value="{{ $new->nama_folder }}" required>
+                                        </div>
+                                        <div class="hidden sm:col-span-2">
+                                            <label for="disabled-input-2"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                            <input type="text" name="role" id="disabled-input-2"
+                                                aria-label="disabled input 2"
+                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                value="{{ Auth::user()->role }}" disabled readonly>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer mt-3">
+                                        <button type="submit" class="btn btn-success edit">Edit Folder</button>
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Back</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
-        @foreach ($folder as $edit)
-            {{-- EDIT FOLDER --}}
-            <div id="edit-"{{ $edit->id }}" class="flex items-center justify-center hidden">
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true">
-                    <div class="flex flex-col mx-auto pt-28 ">
-                        <div
-                            class="w-full mx-auto max-w-sm p-4 bg-gray-900 border border-gray-200 rounded-[20px] justify-items-center">
-                            <h5 class="text-xl font-medium text-white dark:text-white mb-4  text-center">MENAMBAHKAN </h5>
-                            <form class="space-y-2" action="{{ route('updateFolder', $edit->id) }}" method="POST">
-                                @csrf
-                                <label for="username" class="block tecxt-sm font-medium text-white dark:text-white">Nama
-                                    Folder :</label>
-                                <div class="grid justify-items-center">
-                                    <input name="nama_folder" type="text" placeholder="usernameme" value="{{ $edit->nama_folder }}"
-                                        class="h-9 form-input w-full bwhitent border-yellow-600 py-3 px-3 rounded-lg outline-none texblackte dark:texblackte">
-                                </div>
-                                <!-- <label for="username" class="block text-sm font-medium text-white dark:text-white">role :</label> -->
-
-                                <input type="hidden" value="{{ session()->get('role') }}" name="role">
-
-                                <button type="submit"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                    Tambah
-                                </button>
-                                <a href="/" id="batals"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-white rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-red-600">Batal
-                                </a>
-                                <!-- <button type="submit" class="w-20 h-8 font-bold bg-blue-600 rounded-lg py-3 ">login</button> -->
-                                <!-- <button type="submit" class="items-center w-50 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login </button>    -->
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-
-    </div>
-    </div>
-    </div>
-    </div>
 
 
-
-    <!-- Edit user modal -->
-@endsection
+        <!-- Edit user modal -->
+    @endsection
