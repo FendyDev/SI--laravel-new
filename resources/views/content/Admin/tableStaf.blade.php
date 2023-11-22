@@ -6,6 +6,34 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Akun
         </button>
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+            <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ session('status') }}
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+            <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ session('delete') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-error">
+        </div>
+        {{ session('error') }}
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+        
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

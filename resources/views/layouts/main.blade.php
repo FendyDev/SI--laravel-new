@@ -59,20 +59,20 @@
 }
 </style>
 
-<body class="bg-slate-950 overflow-hidden">
+<body class="bg-slate-950 overflow-x-hidden">
 
   <div class="w-screen ">
     @if ( Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'SuperAdmin')
     <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
       <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
-        <i class="mdi mdi-menu text-white text-3xl"></i>
+        <i class="mdi mdi-dots-grid text-white text-3xl"></i>
       </span>
       <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-10 h-10 cursor-pointer " src="img/smk2.png" alt="User dropdown">
   
     </nav>
 
   </div>
-  <div class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
+  <aside class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
     <div class="text-gray-100 text-xl">
       <div class="p-2 flex items-center">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -86,8 +86,7 @@
 
       <div class="flex flex-col items-center mt-6 -mx-2">
         <img class="object-cover w-24 h-24 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar">
-        <h4 class="mx-2 mt-2 font-medium text-gray-200">XhakimZo</h4>
-        <p class="mx-2 mt-1 text-sm font-medium text-gray-400">azka@gmail.com</p>
+        <h4 class="mx-2 mt-2 font-medium text-gray-200">{{Auth::guard('web')->user()->username}}</h4>
       </div>
 
       <hr class="my-2 text-gray-600">
@@ -117,7 +116,7 @@
       </div>
     </a>
 
-    <a href="{{  route('listStaf') }}">
+    <a href="{{ route('view') }}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
           <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
@@ -126,7 +125,7 @@
       </div>
     </a>
 
-    <a href="#folder">
+    <a href="{{ route('showFolder') }}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
           <path d="M18 5H0v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5Zm-7.258-2L9.092.8a2.009 2.009 0 0 0-1.6-.8H2.049a2 2 0 0 0-2 2v1h10.693Z" />
@@ -139,8 +138,8 @@
 
     <a href="{{ route('logout')}}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7.5h11m0 0L8 3.786M12 7.5l-4 3.714M12 1h3c.53 0 1.04.196 1.414.544.375.348.586.82.586 1.313v9.286c0 .492-.21.965-.586 1.313A2.081 2.081 0 0 1 15 14h-3" />
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
         </svg>
         <div class="text-[15px] ml-4 text-gray-200">Logout</div>
       </div>
@@ -148,29 +147,29 @@
 
 
 
-  </div>
+  </aside>
   @elseif (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'Admin')
   <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
     <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
       <i class="mdi mdi-menu text-white text-3xl"></i>
     </span>
     <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-10 h-10 cursor-pointer " src="img/smk2.png" alt="User dropdown">
-
+    
   </nav>
-
-  </div>
-  <div class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
-    <div class="text-gray-100 text-xl">
-      <div class="p-2 flex items-center justify-between">
-        <i class="mdi mdi-account-badge-outline text-white text-2xl cursor-pointer"></i>
-        <!-- <h1 class="font-bold text-gray-200 text-[15px]">Admin</h1> -->
-        <i class="mdi mdi-window-close text-white text-xl cursor-pointer" onclick="Open()"></i>
-      </div>
-
-      <div class="flex flex-col items-center mt-6 -mx-2">
+  
+</div>
+<aside class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
+  <div class="text-gray-100 text-xl">
+    <div class="p-2 flex items-center justify-between">
+      <i class="mdi mdi-account-badge-outline text-white text-2xl cursor-pointer"></i>
+      <!-- <h1 class="font-bold text-gray-200 text-[15px]">Admin</h1> -->
+      <h1 class="font-bold text-gray-200 text-[15px] mt-2">Admin</h1>
+      <i class="mdi mdi-window-close text-white text-xl cursor-pointer" onclick="Open()"></i>
+    </div>
+    <div class="flex flex-col items-center mt-6 -mx-2">
         <img class="object-cover w-24 h-24 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar">
-        <h4 class="mx-2 mt-2 font-medium text-gray-200">XhakimZo</h4>
-        <p class="mx-2 mt-1 text-sm font-medium text-gray-400">azka@gmail.com</p>
+        <h4 class="mx-2 mt-2 font-medium text-gray-200">{{Auth::guard('web')->user()->username}}</h4>
+        <p class="mx-2 mt-1 text-sm font-medium text-gray-400">{{Auth::guard('web')->user()->role}}</p>
       </div>
       <hr class="my-2 text-gray-600">
     </div>
@@ -189,7 +188,7 @@
       </div>
     </a>
 
-    <a href="/tambahStaf">
+    <a href="/tambahStaf" >
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
           <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
@@ -211,9 +210,9 @@
     <a href="{{ route('logout')}}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
-        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7.5h11m0 0L8 3.786M12 7.5l-4 3.714M12 1h3c.53 0 1.04.196 1.414.544.375.348.586.82.586 1.313v9.286c0 .492-.21.965-.586 1.313A2.081 2.081 0 0 1 15 14h-3" />
-        </svg>
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
+  </svg>
         <div class="text-[15px] ml-4 text-gray-200">Logout</div>
 
       </div>
@@ -221,18 +220,16 @@
 
 
 
-  </div>
+  </aside>
   @elseif (Auth::guard('staf')->check() && Auth::guard('staf')->user()->level == 'Staff')
   <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
     <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
       <i class="mdi mdi-menu text-white text-3xl"></i>
     </span>
     <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-10 h-10 cursor-pointer " src="img/smk2.png" alt="User dropdown">
-
   </nav>
 
-  </div>
-  <div class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
+  <aside class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
     <div class="text-gray-100 text-xl">
       <div class="p-2 flex items-center justify-between">
         <i class="mdi mdi-account-circle-outline text-white text-2xl cursor-pointer"></i>
@@ -241,8 +238,8 @@
 
       <div class="flex flex-col items-center mt-6 -mx-2">
         <img class="object-cover w-24 h-24 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar">
-        <h4 class="mx-2 mt-2 font-medium text-gray-200">XhakimZo</h4>
-        <p class="mx-2 mt-1 text-sm font-medium text-gray-400">azka@gmail.com</p>
+        <h4 class="mx-2 mt-2 font-medium text-gray-200">{{ Auth::guard('staf')->user()->username}}</h4>
+        <p class="mx-2 mt-1 text-sm font-medium text-gray-400">{{ Auth::guard('staf')->user()->role}}</p>
       </div>
 
       <hr class="my-2 text-gray-600">
@@ -259,7 +256,7 @@
       </div>
     </a>
 
-    <a href="">
+    <a href="/server">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
         <i class="mdi mdi-server text-2xl">
@@ -271,13 +268,13 @@
     <hr class="my-2 text-gray-600">
     <a href="{{ route('logout')}}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7.5h11m0 0L8 3.786M12 7.5l-4 3.714M12 1h3c.53 0 1.04.196 1.414.544.375.348.586.82.586 1.313v9.286c0 .492-.21.965-.586 1.313A2.081 2.081 0 0 1 15 14h-3" />
-        </svg>
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
+  </svg>
         <div class="text-[15px] ml-4 text-gray-200">Logout</div>
       </div>
     </a>
-  </div>
+  </aside>
 
   @endif
   </div>

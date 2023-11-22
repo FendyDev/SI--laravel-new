@@ -66,20 +66,30 @@ class AdminController extends Controller
         staf::create([
             'username' => $request['username'],
             'nama_lengkap' => $request['nama_lengkap'],
-            'password' => Hash::make($request['password']),
+            'password' => bcrypt($request['password']),
             'role' => $adminRole,
             'level' => 'Staff',
         ]);
 
-        return redirect('/tambahStaf');
+        return redirect('/tambahStaf')->with('status', 'Berhasil Menambahkan Akun');
     }
     public function listStaf()
     {
-        $data = staf::all();
+        // if ($role) {
+        //     $data = staf::where('role', $role)->get();
+        // } else {
+        //     $data = staf::all();
+        // }
+
+        $role = Auth::guard('web')->user()->role;
+        $data = staf::where('role', $role)->get();
+
+        // $data = staf::where('role', $role)->get();
+        // if ($data = $role) {
+            
+        // }
         return view('content.Admin.tableStaf', ['data' => $data]);
     }
-
-
 
     public function editStaf($id)
     {
@@ -94,7 +104,7 @@ class AdminController extends Controller
         $data = staf::find($id);
         $data->update($request->only(['username', 'nama_lengkap', 'role', 'level']));
 
-        return redirect('/tambahStaf');
+        return redirect('/tambahStaf')->with('status', 'Berhasil Mengedit Akun');
     }
 
     public function deleteStaf($id)
@@ -102,29 +112,28 @@ class AdminController extends Controller
         $data = staf::findOrFail($id);
         $data->delete();
 
-        return redirect('/tambahStaf');
+        return redirect('/tambahStaf')->with('delete', 'Berhasil Menghapus Akun');
     }
 
     //endAddStaff
-    
+
     //AddFolder
     public function createFolder(Request $request)
     {
         $stafRole = Auth::user()->role;
-        
+
         Folder::create([
             'nama_folder' => $request['nama_folder'],
             'role'  => $stafRole,
         ]);
-        
-        return view('content.Admin.index');
+        $data_folder = Folder::all();
+
+        return view('content.Admin.index', [
+            'folder' => $data_folder
+        ]);
     }
-    
-    public function showFolder()
-    {
-        $folder = Folder::all();
-        return view('content.Admin.index', ['folder' => $folder]);
-    }
+
+
 
     public function editFolder($id)
     {
@@ -136,7 +145,7 @@ class AdminController extends Controller
 
     public function updateFolder(Request $request, $id)
     {
-        $folder = FOlder::find($id);
+        $folder = Folder::find($id);
         $folder->update($request->all());
 
         return redirect('/');
@@ -148,5 +157,12 @@ class AdminController extends Controller
         $folder->delete();
 
         return redirect('/');
+    }
+
+    public function inFolder()
+    {
+        // $folder = Folder::find($id);
+        return view('content.Admin.folder',[
+        ]);
     }
 }

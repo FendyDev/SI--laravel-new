@@ -5,12 +5,14 @@
         <div class="flex  max-w-sm ml-7 mt-3 ">
             <button id="btn34" type="button"
                 class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 18 18">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 1v16M1 9h16" />
                 </svg>
-                Tambah Folder
+                <span>
+                    Tambah Folder
+                </span>
             </button>
         </div>
 
@@ -114,7 +116,7 @@
                                         </linearGradient>
                                         <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hc_WWogVNJDSfZ5_gr3)"
                                             d="M2,26h20V12H4c-1.105,0-2,0.895-2,2V26z"></path>
-                                        <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4" x1="16.865"
+                                   <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4" x1="16.865"
                                             x2="44.965" y1="39.287" y2="39.792" gradientUnits="userSpaceOnUse">
                                             <stop offset="0" stop-color="#e3a917"></stop>
                                             <stop offset=".464" stop-color="#d79c1e"></stop>
@@ -148,7 +150,9 @@
 
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $b->nama_folder }}
+                                    <a href="{{ route('inFolder') }}">
+                                        {{ $b->nama_folder }}
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $b->role }}

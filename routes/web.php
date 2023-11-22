@@ -20,12 +20,14 @@ use App\Http\Controllers\SuperAdminController;
 //? Default Route
 Route::get('/', [Controller::class, 'index'])->name('/');
 
+Route::redirect('home','login');
+
 //! Route for Authentication
 Route::get('/login', [AdminController::class, 'login'])->name('login');
-Route::post('Auth', [Controller::class, 'Auth'])->name('Auth');
+Route::post('Auth', [Controller::class, 'Auth'])->name('Auth');;
 
 //! Route for logout
-Route::get('logout', [AdminController::class, 'logout'])->name('logout');
+Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
 //? Route for Super Admin
 Route::middleware(['checkRole:SuperAdmin, web'])->group(function () {
@@ -36,7 +38,12 @@ Route::middleware(['checkRole:SuperAdmin, web'])->group(function () {
    Route::get('/editAdmin/{id}', [SuperAdminController::class, 'edit'])->name('edit');
    Route::put('/updateAdmin/{id}', [SuperAdminController::class, 'update'])->name('update');
    Route::delete('/deleteAdmin/{id}', [SuperAdminController::class, 'destroy'])->name('delete');
-   //Dashboard
+   
+   Route::get('/tambahStaf', [SUperAdminController::class, 'indexStaf'])->name('view');
+   Route::post('/tambahStaf/create', [SUperAdminController::class, 'tambah'])->name('tambah');
+   Route::get('/editStaf/{id}', [SUperAdminController::class, 'ubahStaf'])->name('ubahStaf');
+   Route::put('/updateStaf/{id}', [SUperAdminController::class, 'gantiStaf'])->name('gantiStaf');
+   Route::delete('/deleteStaf/{id}', [SUperAdminController::class, 'hapusStaf'])->name('hapusStaf');
 });
 
 //? Route for Admin
@@ -47,19 +54,22 @@ Route::middleware(['checkRole:Admin, web'])->group(function () {
    Route::get('/editStaf/{id}', [AdminController::class, 'editStaf'])->name('editStaf');
    Route::put('/updateStaf/{id}', [AdminController::class, 'updateStaf'])->name('updateStaf');
    Route::delete('/deleteStaf/{id}', [AdminController::class, 'deleteStaf'])->name('deleteStaf');
+   
    //Add Folder
-   Route::get('/showFolder', [AdminController::class, 'showFolder'])->name('showFolder');
+   Route::get('/showFolder', [AdminController::class, 'index'])->name('showFolder');
    Route::post('/createFolder', [AdminController::class, 'createFolder'])->name('createFolder');
    Route::get('/editFolder/{id}', [AdminController::class, 'editFolder'])->name('editFolder');
    Route::put('/updateFolder/{id}', [AdminController::class, 'updateFolder'])->name('updateFolder');
    Route::delete('/deleteFolder/{id}', [AdminController::class, 'deleteFolder'])->name('deleteFolder');
+
+   //Add File
+   Route::get('inFolder', [AdminController::class, 'inFolder'])->name('inFolder');
 });
 
 //? Route for Staf
-Route::middleware(['checkRole:staf, staf'])->group(function () {
+Route::middleware(['checkRole:Staff, staf'])->group(function () {
    Route::get('dummy', function () {
       return view('layouts.dummy');
    });
+   Route::get('server', [Controller::class, 'server']);
 });
-
-

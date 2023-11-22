@@ -5,8 +5,35 @@
             <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 dark:text-white">Data Admin</h2>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdmin">
-                Tambah Akun
+                Tambah Akun +
             </button>
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                    <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('delete'))
+                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                    <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+                    {{ session('delete') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-error">
+                </div>
+                {{ session('error') }}
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <!-- Modal -->
             <div class="modal fade" id="tambahAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -16,26 +43,6 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Create Admin</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
-                            {{-- @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            @if (session('error'))
-                                <div class="alert alert-error">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif --}}
                             <form action="{{ route('store') }}" method="POST">
                                 @csrf
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
@@ -78,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-primary">Tambah Akun</button>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </form>
@@ -87,6 +94,15 @@
                 </div>
             </div>
 
+            {{-- @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif --}}
             <!-- Modal Edit-->
             @foreach ($admin as $new)
                 <div class="modal fade" id="edit-{{ $new->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -97,15 +113,6 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Admin</h1>
                             </div>
                             <div class="modal-body text-white bg-dark ">
-                                {{-- @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif --}}
                                 <form action="{{ route('update', $new->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
@@ -142,7 +149,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer mt-3">
-                                        <button type="submit" class="btn btn-primary">Edit Akun</button>
+                                        <button type="submit" class="btn btn-primary edit">Edit Akun</button>
                                         <button type="button" class="btn btn-danger"
                                             data-bs-dismiss="modal">Batal</button>
                                     </div>
@@ -229,25 +236,4 @@
             </table>
         </div>
     </div>
-    <script>
-        // set the modal menu element
-        const $targetEl = document.getElementById('modalEl');
-
-        // options with default values
-        const options = {
-            placement: 'bottom-right',
-            backdrop: 'dynamic',
-            backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
-            closable: true,
-            onHide: () => {
-                console.log('modal is hidden');
-            },
-            onShow: () => {
-                console.log('modal is shown');
-            },
-            onToggle: () => {
-                console.log('modal has been toggled');
-            }
-        };
-    </script>
 @endsection
