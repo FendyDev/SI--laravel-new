@@ -2,7 +2,7 @@
 @section('container')
 
 
-<section id="jadwal">
+<section id="jadwal"></section>
     <div class="flex items-center justify-center min-h-screen container mx-auto"> 
         @if (session()->get('level') == 'Admin')
     <div class="text-center">

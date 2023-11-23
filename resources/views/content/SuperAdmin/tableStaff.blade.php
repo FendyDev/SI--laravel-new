@@ -4,7 +4,7 @@
         <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 dark:text-white">Data Staff</h2>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add Account
+            Tambah Akun +
         </button>
 
         @if (session('status'))
@@ -94,8 +94,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer mt-3">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
+                                <button type="submit" class="btn btn-success">Kirim</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                             </div>
                         </form>
                     </div>
@@ -159,8 +159,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-success">Edit Account</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
+                                    <button type="submit" class="btn btn-success">Edit Akun</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </form>
                         </div>
@@ -172,7 +172,7 @@
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-            <table id="dt" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table id="dt" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 stripe">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">

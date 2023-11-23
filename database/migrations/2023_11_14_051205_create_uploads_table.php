@@ -13,9 +13,9 @@ class CreateUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('uploads', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_folder');
+            $table->foreignId('id_folder');
             $table->string('nama_file');
             $table->string('role');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uploads');
+        Schema::dropIfExists('files');
     }
 }

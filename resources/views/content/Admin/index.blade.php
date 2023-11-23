@@ -2,9 +2,13 @@
 @section('container')
     <div class="flex-col mt-5 ml-5 items-start justify-start  container mx-auto">
         <!-- Button trigger modal -->
+    
+
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdmin">
             Add Folder
         </button>
+     
+      
 
         {{-- <div class="relative">
             <label for="table-search" class="sr-only">Search</label>
@@ -154,9 +158,6 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $b->role }}
-                                    {{-- <div class="flex items-center">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Online
-                                    </div> --}}
                                 </td>
                                 <td class="px-6 py-4">
                                     <form action="{{ route('deleteFolder', $b->id) }}" method="POST">

@@ -13,4 +13,9 @@ class Folder extends Model
         'nama_folder',
         'role'
     ];
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

@@ -10,8 +10,13 @@ class File extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_folder',
+        'id_folder',
         'nama_file',
         'role'
     ];
+
+    public function folder()
+    {
+        return $this->belongsTo(Folder::class);
+    }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\staf;
 use App\Models\admin;
 use App\Models\Folder;
-use App\Models\File;
+use App\Models\file;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -87,16 +87,22 @@ class AdminController extends Controller
 
     public function listStaf()
     {
-        if(Auth::guard('web')->user()->level == 'SuperAdmin') {
-            $data = staf::all();
-
-            return view('content.SuperAdmin.tableStaff', ['data' => $data]);
-        }
-        if(Auth::guard('web')->user()->level == 'Admin') {
-            $role = Auth::guard('web')->user()->role;
-            $data = staf::where('role', $role)->get();
+        if(Auth::guard('web')->check() || Auth::guard('staf')->check())
+        {
+            if(Auth::guard('web')->user()->level == 'SuperAdmin') {
+                $data = staf::all();
     
-            return view('content.Admin.tableStaf', ['data' => $data]);
+                return view('content.SuperAdmin.tableStaff', ['data' => $data]);
+            }
+            else if(Auth::guard('web')->user()->level == 'Admin') {
+                $role = Auth::guard('web')->user()->role;
+                $data = staf::where('role', $role)->get();
+        
+                return view('content.Admin.tableStaf', ['data' => $data]);
+            }
+        }
+        else{
+            return redirect('/');
         }
     }
 
@@ -151,7 +157,7 @@ class AdminController extends Controller
     public function updateFolder(Request $request, $id)
     {
         $folder = Folder::find($id);
-        $folder->update($request->all());
+        $folder->update($request->all());{{  }}
 
         return redirect('/');
     }
@@ -166,56 +172,10 @@ class AdminController extends Controller
 
     public function inFolder($id)
     {
-        $folder = Folder::find($id);
+        $folder = file::where('id_folder', $id)->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
         return view('content.Admin.folder',[
-            'folder' => $folder
+            'folder' => $folder,
+            'id_folder' => $id,
         ]);
     }
-
-    // //CRUD File
-    // public function createFile(Request $request)
-    // {
-    //     $stafRole = Auth::user()->role;
-
-    //     File::create([
-    //         'nama_folder' => $request['nama_folder'],
-    //         'nama_file' => $request['nama_file'],
-    //         'role'  => $stafRole,
-    //     ]);
-    //     return redirect()->route('inFolder');
-    // }
-
-
-
-    // public function editFile($id)
-    // {
-    //     $File = File::find($id);
-    //     return view('content.Admin.index', [
-    //         'File' => $File
-    //     ]);
-    // }
-
-    // public function updateFile(Request $request, $id)
-    // {
-    //     $File = File::find($id);
-    //     $File->update($request->all());
-
-    //     return redirect('inFolder');
-    // }
-
-    // public function deleteFile($id)
-    // {
-    //     $File = File::findOrFail($id);
-    //     $File->delete();
-
-    //     return redirect('inFolder');
-    // }
-
-    // public function inFile($id)
-    // {
-    //     $File = File::find($id);
-    //     return view('content.Admin.folder',[
-    //         'File' => $File
-    //     ]);
-    // }
 }

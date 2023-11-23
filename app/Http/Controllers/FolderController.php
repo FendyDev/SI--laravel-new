@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use index;
 use App\Models\Folder;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,11 @@ class FolderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+       
+    }
+    
     public function create()
     {
         
