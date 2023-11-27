@@ -59,7 +59,7 @@ class AdminController extends Controller
 
         $cek = Auth::guard('web')->user()->level;
 
-        if($cek == 'SuperAdmin') {
+        if ($cek == 'SuperAdmin') {
             staf::create([
                 'username' => $request['username'],
                 'nama_lengkap' => $request['nama_lengkap'],
@@ -67,11 +67,10 @@ class AdminController extends Controller
                 'role' => $request['role'],
                 'level' => 'Staff',
             ]);
-            
         }
-        if($cek == 'Admin') {
+        if ($cek == 'Admin') {
             $adminRole = Auth::user()->role;
-    
+
             staf::create([
                 'username' => $request['username'],
                 'nama_lengkap' => $request['nama_lengkap'],
@@ -79,29 +78,25 @@ class AdminController extends Controller
                 'role' => $adminRole,
                 'level' => 'Staff',
             ]);
-            
         }
 
-        return redirect('/tambahStaf')->with('status', 'Berhasil Menambahkan Akun');
+        return redirect()->route('listStaf')->with('status', 'Berhasil Menambahkan Akun');
     }
 
     public function listStaf()
     {
-        if(Auth::guard('web')->check() || Auth::guard('staf')->check())
-        {
-            if(Auth::guard('web')->user()->level == 'SuperAdmin') {
+        if (Auth::guard('web')->check() || Auth::guard('staf')->check()) {
+            if (Auth::guard('web')->user()->level == 'SuperAdmin') {
                 $data = staf::all();
-    
+
                 return view('content.SuperAdmin.tableStaff', ['data' => $data]);
-            }
-            else if(Auth::guard('web')->user()->level == 'Admin') {
+            } else if (Auth::guard('web')->user()->level == 'Admin') {
                 $role = Auth::guard('web')->user()->role;
                 $data = staf::where('role', $role)->get();
-        
+
                 return view('content.Admin.tableStaf', ['data' => $data]);
             }
-        }
-        else{
+        } else {
             return redirect('/');
         }
     }
@@ -119,7 +114,7 @@ class AdminController extends Controller
         $data = staf::find($id);
         $data->update($request->only(['username', 'nama_lengkap', 'role', 'level']));
 
-        return redirect('/tambahStaf')->with('status', 'Berhasil Mengedit Akun');
+        return redirect()->route('listStaf')->with('status', 'Berhasil Mengedit Akun');
     }
 
     public function deleteStaf($id)
@@ -127,12 +122,30 @@ class AdminController extends Controller
         $data = staf::findOrFail($id);
         $data->delete();
 
-        return redirect('/tambahStaf')->with('delete', 'Berhasil Menghapus Akun');
+        return redirect()->route('listStaf')->with('delete', 'Berhasil Menghapus Akun');
     }
 
     //endStaff
 
     //CRUD Folder
+    public function showFolder()
+    {
+        if (Auth::guard('web')->user()->level == 'Admin') {
+            $role = Auth::guard('web')->user()->role;
+            $data = Folder::where('role', $role)->get();
+            return view('content.Admin.folder', [
+                'folder' => $data,
+            ]);
+        }
+        else if (Auth::guard('staf')->user()->level == 'Staff') {
+            $role = Auth::guard('staf')->user()->role;
+            $data = Folder::where('role', $role)->get();
+            return view('content.staff.folder', [
+                'folder' => $data,
+            ]);
+        }
+    }
+
     public function createFolder(Request $request)
     {
         $stafRole = Auth::user()->role;
@@ -141,7 +154,7 @@ class AdminController extends Controller
             'nama_folder' => $request['nama_folder'],
             'role'  => $stafRole,
         ]);
-        return redirect()->route('/');
+        return redirect()->route('folder');
     }
 
 
@@ -149,7 +162,7 @@ class AdminController extends Controller
     public function editFolder($id)
     {
         $folder = Folder::find($id);
-        return view('content.Admin.index', [
+        return view('content.Admin.folder', [
             'folder' => $folder
         ]);
     }
@@ -157,9 +170,11 @@ class AdminController extends Controller
     public function updateFolder(Request $request, $id)
     {
         $folder = Folder::find($id);
-        $folder->update($request->all());{{  }}
+        $folder->update($request->all()); { {
+            }
+        }
 
-        return redirect('/');
+        return redirect()->route('folder');
     }
 
     public function deleteFolder($id)
@@ -167,13 +182,13 @@ class AdminController extends Controller
         $folder = Folder::findOrFail($id);
         $folder->delete();
 
-        return redirect('/');
+        return redirect()->route('folder');
     }
 
     public function inFolder($id)
     {
         $folder = file::where('id_folder', $id)->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
-        return view('content.Admin.folder',[
+        return view('content.Admin.file', [
             'folder' => $folder,
             'id_folder' => $id,
         ]);

@@ -52,7 +52,7 @@
                         </ul>
                     </div>
                     @endif --}}
-                        <form action="/tambahStaf/create" method="POST">
+                        <form action="{{ route('createStaf') }}" method="POST">
                             @csrf
                             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                 <div class="sm:col-span-2">

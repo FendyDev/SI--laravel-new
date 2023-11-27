@@ -42,13 +42,8 @@ class Controller extends BaseController
     {
         if (Auth::guard('web')->check() || Auth::guard('staf')->check()) {
             if (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'Admin') {
-                $role = Auth::guard('web')->user()->role;
-                $data = Folder::where('role', $role)->get();
-                // $file = File::all();
                 return view('content.Admin.index', [
                     'title' => 'Admin',
-                    'folder' => $data,
-                    // 'file' => $file,
                 ]);
             } else if (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'SuperAdmin') {
                 return view('content.SuperAdmin.index', [

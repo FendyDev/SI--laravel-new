@@ -126,14 +126,14 @@
       </div>
     </a>
 
-    <a href="{{ route('/') }}">
+    {{-- <a href="{{ route('folder') }}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
           <path d="M18 5H0v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5Zm-7.258-2L9.092.8a2.009 2.009 0 0 0-1.6-.8H2.049a2 2 0 0 0-2 2v1h10.693Z" />
         </svg>
         <span class="text-[15px] ml-4 text-gray-200">Folder</span>
       </div>
-    </a>
+    </a> --}}
 
     <hr class="my-2 text-gray-600">
 
@@ -202,7 +202,7 @@
       </div>
     </a>
 
-    <a href="{{ route('/') }}">
+    <a href="{{ route('folder') }}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
           <path d="M18 5H0v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5Zm-7.258-2L9.092.8a2.009 2.009 0 0 0-1.6-.8H2.049a2 2 0 0 0-2 2v1h10.693Z" />
@@ -274,7 +274,7 @@
       </div>
     </a>
 
-    <a href="/server">
+    <a href="{{ route('folder') }}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
         <i class="mdi mdi-server text-2xl">

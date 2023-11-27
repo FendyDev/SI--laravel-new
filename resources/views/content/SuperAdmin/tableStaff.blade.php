@@ -53,7 +53,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Create Staff</h1>
                     </div>
                     <div class="modal-body text-white bg-dark ">
-                        <form action="{{ url('/tambahStaf/create') }}" method="POST">
+                        <form action="{{ route('createStaf') }}" method="POST">
                             @csrf
                             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                 <div class="sm:col-span-2">
