@@ -2,7 +2,12 @@
 @section('container')
     <div class="container px-5 mx-auto justify-center items-center">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 dark:text-white">Data Files</h2>
+            <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 light:text-black">
+                @foreach ($folder as $i)
+                    {{ $i->nama_folder }}
+                @endforeach
+                Nama Folder
+            </h2>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdmin">
                 Tambah File +
@@ -44,7 +49,7 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Create File</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
-                            <form action="{{ route('addFile') }}" method="POST" class="needs-validation"
+                            <form action="{{ route('addFileS') }}" method="POST" class="needs-validation"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
@@ -76,49 +81,6 @@
                 </div>
             </div>
 
-            <!-- Modal Edit-->
-            {{-- @foreach ($File as $new)
-                <div class="modal fade" id="edit-{{ $new->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-white bg-dark ">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit File</h1>
-                            </div>
-                            <div class="modal-body text-white bg-dark ">
-                                <form action="{{ route('update', $new->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
-                                        <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                                Folder</label>
-                                            <input type="text" name="nama_folder" id="username"
-                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Folder Name" value="{{ $new->nama_folder }}" required>
-                                        </div>
-                                        <div class="hidden sm:col-span-2">
-                                            <label for="disabled-input-2"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                            <input type="text" name="role" id="disabled-input-2"
-                                                aria-label="disabled input 2"
-                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                value="{{ Auth::user()->role }}" disabled readonly>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer mt-3">
-                                        <button type="submit" class="btn btn-success edit">Edit File</button>
-                                        <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">Back</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach --}}
-
             <table class=" mt-5 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-auto stripe"
                 id="dt">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -133,10 +95,13 @@
                             Pengirim
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Role
+                            Status
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Tanggal
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -144,31 +109,35 @@
                     <?php $i = 1; ?>
                     @foreach ($folder as $view)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap ">
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                 {{ $loop->iteration }}
-                            </th>
-                            <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
+                            </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $view->nama_file }}
-                            </th>
-                            <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
-                                {{-- {{ Auth::user()->nama_lengkap ?? Auth::guard('staf')->user()->nama_lengkap}} --}}
-                            </th>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ Auth::user()->role ?? Auth::guard('staf')->user()->role}}
+                            </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ $view->pengirim }}
+                            </td>
+                            <td class="px-6 py-4 ont-medium text-gray-900 whitespace-nowrap">
+                                {{ $view->role }}
+                            </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ $view->created_at }}
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <form action="{{ route('deleteFile', $view->id) }}" method="POST">
+                                <form action="{{ route('deleteFileS', $view->id) }}" method="POST">
                                     <a href="uploads/documents/{{ $view->nama_file }}" class="btn btn-success"
-                                        download="uploads/documents/{{ $view->nama_file }}">Download</a>
+                                        download="uploads/documents/{{ $view->nama_file }}"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
+                                            <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+                                          </svg></a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                        </svg>
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                            <path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z"/>
+                                          </svg>
                                     </button>
                                 </form>
                             </td>

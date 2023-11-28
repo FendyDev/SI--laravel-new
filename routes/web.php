@@ -59,10 +59,10 @@ Route::middleware(['checkRole:SuperAdmin, web'])->group(function () {
 //? Route for Admin
 Route::middleware(['checkRole:Admin, web'])->group(function (){
    //View Folder and Add File
-   Route::get('/folders', [AdminController::class, 'showFolder'])->name('folder');
-   Route::get('/folders{id}', [AdminController::class, 'inFolder'])->name('inFolder');
-   Route::post('/files', [Controller::class, 'addFile'])->name('addFile');
-   Route::delete('/files/{id}', [Controller::class, 'deleteFile'])->name('deleteFile');
+   Route::get('folder', [AdminController::class, 'showFolder'])->name('folder');
+   Route::get('inFolder{id}', [AdminController::class, 'inFolder'])->name('inFolder');
+   Route::post('addFile', [Controller::class, 'addFile'])->name('addFile');
+   Route::delete('deleteFile/{id}', [Controller::class, 'deleteFile'])->name('deleteFile');
 });
 
 //? Route for Staf
@@ -70,10 +70,9 @@ Route::middleware(['checkRole:Staff, staf'])->group(function () {
    // Route::get('dummy', function () {
    //    return view('layouts.dummy');
    // });
-   // Route::get('/folders', [Controller::class, 'showFolder'])->name('server');
-   // Route::get('server{id}', [Controller::class, 'inFolder'])->name('inFolder');
-   // Route::get('server', [Controller::class, 'showFolder'])->name('server');
-   // Route::get('server{id}', [Controller::class, 'inFolder'])->name('inFolder');
-   // Route::post('/files', [Controller::class, 'addFile'])->name('addFile');
-   // Route::delete('/files/{id}', [Controller::class, 'deleteFile'])->name('deleteFile');
+
+   Route::get('/folders', [AdminController::class, 'lihatFolder'])->name('server');
+   Route::get('/folders{id}', [AdminController::class, 'inFolderS'])->name('inFolderS');
+   Route::post('/files', [Controller::class, 'addFileS'])->name('addFileS');
+   Route::delete('/files/{id}', [Controller::class, 'deleteFileS'])->name('deleteFileS');
 });

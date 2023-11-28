@@ -12,6 +12,7 @@ class File extends Model
     protected $fillable = [
         'id_folder',
         'nama_file',
+        'pengirim',
         'role'
     ];
 

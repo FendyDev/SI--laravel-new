@@ -34,7 +34,7 @@ class Controller extends BaseController
         } elseif (Auth::guard('staf')->attempt($users)) {
             return redirect()->route('/');
         } else {
-            return $users;
+            return redirect()->back()->with('error','Login Gagal');
         }
     }
 
@@ -87,17 +87,51 @@ class Controller extends BaseController
         File::create([
             'id_folder' => $request->id_folder,
             'nama_file' => $fileName,
+            'pengirim' => Auth::guard('web')->user()->nama_lengkap,
             'role' => Auth::guard('web')->user()->role,
         ]);
 
-        return `Dokumen berhasil diupload! $fileName`;
+        $id = $request->id_folder;
+
+        return redirect()->route('inFolder',$id);
     }
 
-    public function deleteFile($id)
+    public function deleteFile(Request $request, $id)
     {
         $folder = file::findOrFail($id);
         $folder->delete();
 
-        return redirect('/');
+        return redirect()->back();
+    }
+
+    //Files Staff
+    public function addFileS(Request $request){
+        // $request->validate([
+        //     'document' => 'required|mimes:pdf,doc,docx|max:2048',
+        // ]);
+
+        $document = $request->file('document');
+        $fileName = $document->getClientOriginalName();
+        $document->move(public_path('uploads/documents'), $fileName);
+
+        File::create([
+            'id_folder' => $request->id_folder,
+            'nama_file' => $fileName,
+            'pengirim' => Auth::guard('staf')->user()->nama_lengkap,
+            'role' => Auth::guard('staf')->user()->role,
+        ]);
+
+        $id = $request->id_folder;
+
+        return redirect()->route('inFolderS',$id);
+    }
+
+    public function deleteFileS($id)
+    {
+        $folder = file::findOrFail($id);
+        $folder->delete();
+
+        return redirect()->back();
     }
 }
+

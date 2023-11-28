@@ -13,35 +13,35 @@
   <!-- Datatables config -->
   <link rel="stylesheet" href="DataTables/datatables.min.css" type="text/css">
   <script src="DataTables/datatables.min.js" type="text/javascript"></script>
-  <!-- bootstrap -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-
 </head>
 
 <script>
   $(document).ready(function() {
     $('#dt').DataTable();
   })
+  $(document).ready(function() {
+    $('#ls').DataTable();
+  })
 </script>
 <style>
 
   .dataTables_wrapper .dataTables_filter input {
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: 15px;
   }
 
   .dataTables_wrapper .dataTables_filter label {
-    color: white;
+    color: rgb(0, 0, 0);
   }
 
   .dataTables_wrapper .dataTables_length,
   .dataTables_wrapper .dataTables_filter,
   .dataTables_wrapper .dataTables_processing,
   .dataTables_wrapper .dataTables_paginate {
-    color: white;
+    color: rgb(0, 0, 0);
     margin-bottom: 2%;
     margin-top: 2%;
   }
@@ -53,19 +53,20 @@
     border: 1px solid #aaa;
     border-radius: 3px;
     padding: 5px;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     color: inherit;
     padding: 4px;
-}
+    font-size: 12px
+  }
 </style>
 
-<body class="bg-slate-950 overflow-x-hidden ">
+<body class="bg-slate-200 overflow-x-hidden ">
   
   <div class="w-screen ">
     @if ( Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'SuperAdmin')
     <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
       <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
-        <i class="mdi mdi-dots-grid text-white text-3xl"></i>
+        <i class="mdi mdi-menu text-white text-3xl"></i>
       </span>
       <img id="avatarButton" type="button" data-dropdown-toggle="userDropdownId" data-dropdown-placement="bottom-start" class="w-10 h-10 cursor-pointer " src="img/smk2.png" alt="User dropdown">
   
@@ -75,7 +76,7 @@
   <aside class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
     <div class="text-gray-100 text-xl">
       <div class="p-2 flex items-center">
-        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+        <svg class="w-6 h-6 te  xt-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
         </svg>
         <h1 class="font-bold text-gray-200 text-[15px] ml-3 mt-1">S-Admin</h1>
@@ -93,10 +94,10 @@
 
     </div>
 
-    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
+    {{-- <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
       <i class="bi bi-search text-sm"></i>
       <input type="text" placeholder="search" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none">
-    </div>
+    </div> --}}
 
     <a href="{{ route('/') }}">
       <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
@@ -266,22 +267,16 @@
         <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
       </div>
     </a>
-    <a href="#">
-      <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-          <i class="mdi mdi-folder-lock text-2xl"></i>
-        <span class="text-[15px] ml-4 text-gray-200">File Saya</span>
+    
 
+    <a href="{{ route('server') }}">
+      <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+          <path d="M18 5H0v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5Zm-7.258-2L9.092.8a2.009 2.009 0 0 0-1.6-.8H2.049a2 2 0 0 0-2 2v1h10.693Z" />
+        </svg>
+        <span class="text-[15px] ml-4 text-gray-200">Folder</span>
       </div>
     </a>
-
-    <a href="{{ route('folder') }}">
-      <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-
-        <i class="mdi mdi-server text-2xl">
-        </i>
-        <span class="text-[15px] ml-4 text-gray-200">Server</span>
-
-      </div>
     </a>
     <hr class="my-2 text-gray-600">
     <a href="{{ route('logout')}}">

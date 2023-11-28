@@ -17,6 +17,7 @@ class CreateUploadsTable extends Migration
             $table->id();
             $table->foreignId('id_folder');
             $table->string('nama_file');
+            $table->string('pengirim');
             $table->string('role');
             $table->timestamps();
         });

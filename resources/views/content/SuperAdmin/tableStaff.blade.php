@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('container')
     <div class="container px-5 mx-auto ">
-        <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 dark:text-white">Data Staff</h2>
+        <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 light:text-black">Data Staff</h2>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Akun +
@@ -81,9 +81,14 @@
                                 <div class="w-full">
                                     <label for="rl"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                    <input type="text" name="role" id="rl"
-                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="Status" required>
+                                        <select name="role" id="rl"
+                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 cursor-pointer dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        required>
+                                        <option value="WKS 1" >WKS 1</option>
+                                        <option value="WKS 2" >WKS 2</option>
+                                        <option value="WKS 3" >WKS 3</option>
+                                        <option value="WKS 4" >WKS 4</option>
+                                    </select>
                                 </div>
                                 <div class="w-full">
                                     <label for="disabled-input-2"
@@ -120,7 +125,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-white bg-dark ">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Admin</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Staff</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
                             <form action="{{ route('updateStaf', $a->id) }}" method="POST">
@@ -145,9 +150,14 @@
                                     <div class="w-full">
                                         <label for="rl"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <input type="text" name="role" id="rl"
-                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Status" value="{{ $a->role }}" required>
+                                        <select name="role" id="rl"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 cursor-pointer dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            required>
+                                            <option value="WKS 1" {{ $a->role == 'WKS 1' ? 'selected' : '' }}>WKS 1</option>
+                                            <option value="WKS 2" {{ $a->role == 'WKS 2' ? 'selected' : '' }}>WKS 2</option>
+                                            <option value="WKS 3" {{ $a->role == 'WKS 3' ? 'selected' : '' }}>WKS 3</option>
+                                            <option value="WKS 4" {{ $a->role == 'WKS 4' ? 'selected' : '' }}>WKS 4</option>
+                                        </select>
                                     </div>
                                     <div class="w-full">
                                         <label for="disabled-input-2"
@@ -198,15 +208,15 @@
                 <tbody>
                     @foreach ($data as $staf)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap ">
+                            <td scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap ">
                                 {{ $loop->iteration }}
-                            </th>
-                            <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
+                            </td>
+                            <td scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
                                 {{ $staf->username }}
-                            </th>
-                            <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
+                            </td>
+                            <td scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
                                 {{ $staf->nama_lengkap }}
-                            </th>
+                            </td>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $staf->role }}
                             </td>

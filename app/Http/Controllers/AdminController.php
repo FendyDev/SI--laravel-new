@@ -130,20 +130,30 @@ class AdminController extends Controller
     //CRUD Folder
     public function showFolder()
     {
-        if (Auth::guard('web')->user()->level == 'Admin') {
-            $role = Auth::guard('web')->user()->role;
-            $data = Folder::where('role', $role)->get();
-            return view('content.Admin.folder', [
-                'folder' => $data,
-            ]);
-        }
-        else if (Auth::guard('staf')->user()->level == 'Staff') {
-            $role = Auth::guard('staf')->user()->role;
-            $data = Folder::where('role', $role)->get();
-            return view('content.staff.folder', [
-                'folder' => $data,
-            ]);
-        }
+        $role = Auth::guard('web')->user()->role;
+        $data = Folder::where('role', $role)->get();
+        return view('content.Admin.folder', [
+            'folder' => $data,
+        ]);
+
+        // if (Auth::guard('web','Staff')->user()->level == 'Admin' ?? 'Staff' ) {
+        // }
+        // else if (Auth::guard('staf')->user()->level == 'Staff') {
+        //     $role = Auth::guard('staf')->user()->role;
+        //     $data = Folder::where('role', $role)->get();
+        //     return view('content.staff.folder', [
+        //         'folder' => $data,
+        //     ]);
+        // }
+    }
+
+    public function lihatFolder()
+    {
+        $role = Auth::guard('staf')->user()->role;
+        $data = Folder::where('role', $role)->get();
+        return view('content.staff.folder', [
+            'folder' => $data,
+        ]);
     }
 
     public function createFolder(Request $request)
@@ -189,6 +199,15 @@ class AdminController extends Controller
     {
         $folder = file::where('id_folder', $id)->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
         return view('content.Admin.file', [
+            'folder' => $folder,
+            'id_folder' => $id,
+        ]);
+    }
+
+    public function inFolderS($id)
+    {
+        $folder = file::where('id_folder', $id)->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
+        return view('content.staff.file', [
             'folder' => $folder,
             'id_folder' => $id,
         ]);
