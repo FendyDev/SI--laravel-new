@@ -1,12 +1,12 @@
 @extends('layouts.main')
 @section('container')
-    <div class="mx-2 lg:px-5 lg:mx-10 ">
+    <div class="container px-2 ">
         <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 light:text-black">Data Staff</h2>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button title="Tambah" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Akun +
         </button>
-        
+
         @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                 <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
@@ -35,6 +35,16 @@
             </div>
         @endif
 
+        {{-- @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif --}}
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -43,75 +53,77 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Create Staff</h1>
                     </div>
                     <div class="modal-body text-white bg-dark ">
-                        {{-- @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif --}}
                         <form action="{{ route('createStaf') }}" method="POST">
                             @csrf
-                            <div:flex-root g:flex-root-cols-2 sm:gapow mb-3">
+                            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                 <div class="sm:col-span-2">
                                     <label for="username"
-                                        class=:flex-root mb-2 text-sowfont-medium text-gray-900 dark:text-white">Username</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                                     <input type="text" name="username" id="username"
-                                        class="bg-gray-50 text-gray-9ow text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600:flex-root w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Username" required>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="nama_lengkap"
-                                        class=:flex-root mb-2 text-smowont-medium text-gray-900 dark:text-white">Nama
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                         Lengkap</label>
                                     <input type="text" name="nama_lengkap" id="nama_lengkap"
-                                        class="bg-gray-50 text-gray-9ow text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600:flex-root w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Nama Lengkap" required>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="pw"
-                                        class=:flex-root mb-2 text-sowfont-medium text-gray-900 dark:text-white">Password</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                     <input type="password" name="password" id="pw"
-                                        class="bg-gray-50 text-gray-9ow text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600:flex-root w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Password" required>
                                 </div>
-                                @if (session()->get('level') == 'SuperAdmin')
-                                    <div class="w-full">
-                                        <label for="rl"
-                                            class=:flex-root mb-2 teow-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <input type="text" name="role" id="rl"
-                                            class="bg-gray-50 text-grow-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600:flex-root w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Status" required>
-                                    </div>
-                                @else
-                                    <div class="w-full">
-                                        <label for="disabled-input-2"
-                                            class=:flex-rootowb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <input type="text" name="level" id="disabled-input-2"
-                                            aria-label="disabled input 2"
-                                            class="bg-gray-50 text-grow-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600:flex-root w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="{{ Auth::user()->role }}" disabled readonly>
-                                    </div>
-                                @endif
+                                <div class="w-full">
+                                    <label for="rl"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                    @foreach ($data as $item)
+                                        <select name="role" id="rl"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            required disabled>
+                                            <option value="WKS 1" {{ $item->role == 'WKS 1' ? 'selected' : '' }}>WKS 1
+                                            </option>
+                                            <option value="WKS 2" {{ $item->role == 'WKS 2' ? 'selected' : '' }}>WKS 2
+                                            </option>
+                                            <option value="WKS 3" {{ $item->role == 'WKS 3' ? 'selected' : '' }}>WKS 3
+                                            </option>
+                                            <option value="WKS 4" {{ $item->role == 'WKS 4' ? 'selected' : '' }}>WKS 4
+                                            </option>
+                                        </select>
+                                    @endforeach
+                                </div>
                                 <div class="w-full">
                                     <label for="disabled-input-2"
-                                        class=:flex-root mb-owtext-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
                                     <input type="text" name="level" id="disabled-input-2" aria-label="disabled input 2"
-                                        class="bg-gray-50 text-gray-9ow text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600:flex-root w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         value="Staff" disabled readonly>
                                 </div>
                             </div>
                             <div class="modal-footer mt-3">
-                                <button type="submit" class="btn btn-success">Kirim</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                <button title="Kirim" type="submit" class="btn btn-success">Kirim</button>
+                                <button title="Kembali" type="button" class="btn btn-danger"
+                                    data-bs-dismiss="modal">Batal</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
 
+        {{-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif --}}
 
         @foreach ($data as $a)
             <!-- Modal Edit-->
@@ -120,77 +132,73 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-white bg-dark ">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Admin</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Staff</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
-                            {{-- @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif --}}
                             <form action="{{ route('updateStaf', $a->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <div:flex-root g:flex-root-cols-2 smowap-6 mb-3">
+                                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                     <div class="sm:col-span-2">
                                         <label for="username"
-                                            class=:flex-root mb-2 teow-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                                         <input type="text" name="username" id="username"
-                                            class="bg-gray-50 text-grow-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600:flex-root w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="Username" value="{{ $a->username }}" required>
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="nama_lengkap"
-                                            class=:flex-root mb-2 texowsm fontium text-gray-900 dark:text-white">Nama
+                                            class="block mb-2 text-sm fontium text-gray-900 dark:text-white">Nama
                                             Lengkap</label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
-                                            class="bg-gray-50 text-grow-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600:flex-root w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="Nama Lengkap" value="{{ $a->nama_lengkap }}" required>
                                     </div>
-                                    @if (session()->get('level') == 'SuperAdmin')
-                                        <div class="w-full">
-                                            <label for="rl"
-                                                class=:flex-root mb-owtext-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                            <input type="text" name="role" id="rl"
-                                                class="bg-gray-50 texowgray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600:flex-root w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Status" required>
-                                        </div>
-                                    @else
-                                        <div class="w-full">
-                                            <label for="disabled-input-2"
-                                                class=:flex-owot mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                            <input type="text" name="level" id="disabled-input-2"
-                                                aria-label="disabled input 2"
-                                                class="bg-gray-50 texowgray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600:flex-root w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                value="{{ Auth::user()->role }}" disabled readonly>
-                                        </div>
-                                    @endif
+                                    <div class="w-full">
+                                        <label for="rl"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                        {{-- <input type="text" name="role" id="rl"
+                                            aria-label="disabled input 2"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            value="{{ $a->role }}" disabled readonly> --}}
+                                        <select name="role" id="rl"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            required disabled>
+                                            <option value="WKS 1" {{ $a->role == 'WKS 1' ? 'selected' : '' }}>WKS 1
+                                            </option>
+                                            <option value="WKS 2" {{ $a->role == 'WKS 2' ? 'selected' : '' }}>WKS 2
+                                            </option>
+                                            <option value="WKS 3" {{ $a->role == 'WKS 3' ? 'selected' : '' }}>WKS 3
+                                            </option>
+                                            <option value="WKS 4" {{ $a->role == 'WKS 4' ? 'selected' : '' }}>WKS 4
+                                            </option>
+                                        </select>
+                                    </div>
                                     <div class="w-full">
                                         <label for="disabled-input-2"
-                                            class=:flex-rootowb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
                                         <input type="text" name="level" id="disabled-input-2"
                                             aria-label="disabled input 2"
-                                            class="bg-gray-50 text-grow-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600:flex-root w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="Staff" disabled readonly>
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            value="{{ $a->level }}" disabled readonly>
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-success">Edit Akun</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button title="Ubah" type="submit" class="btn btn-success">Edit Akun</button>
+                                    <button title="Kembali" type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
         @endforeach
 
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2 hidden lg:block">
-            <table id="dt" class="w-full text-sm text-left  rtl:text-right text-gray-500 dark:text-gray-400 stripe" >
+        <div class="relative overflow-x-auto  hidden lg:block">
+
+            <table id="dt" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 stripe">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -199,16 +207,15 @@
                         <th scope="col" class="px-6 py-3">
                             Username
                         </th>
-
-                            <th scope="col" class="px-6 py-3 ">
-                                Nama Lengkap
-                            </th>
-                            <th scope="col" class="px-6 py-3 ">
-                                Status
-                            </th>
-                            <th scope="col" class="px-6 py-3 ">
-                                Role
-                            </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nama Lengkap
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Role
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Action
                         </th>
@@ -223,20 +230,19 @@
                             <td scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
                                 {{ $staf->username }}
                             </td>
-                                
-                                <td scope="row" class="px-6 py-4  font-meowum text-gray-900 whitespace-nowrap  ">
-                                    {{ $staf->nama_lengkap }}
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medowm text-gray-900 whitespace-nowrap ">
-                                    {{ $staf->role }}
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medowm text-gray-900 whitespace-nowrap  ">
-                                    {{ $staf->level }}
-                                </td>
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                            <td scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
+                                {{ $staf->nama_lengkap }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ $staf->role }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ $staf->level }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <form action="{{ route('deleteStaf', $staf->id) }}" method="POST">
                                     @if (isset($staf->id))
-                                        <a href="{{ route('editStaf', $staf->id) }}"
+                                        <a title="Ubah" href="{{ route('editStaf', $staf->id) }}"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-primary"
                                             data-bs-toggle="modal" data-bs-target="#edit-{{ $staf->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -250,7 +256,7 @@
                                     @endif
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
+                                    <button title="Hapus" type="submit"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
@@ -259,14 +265,15 @@
                                         </svg>
                                     </button>
                                 </form>
-                            </th>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class=" shadow-md sm:rounded-lg mt-2 lg:hidden">
-            <table id="ls" class="w-full text-sm text-left  rtl:text-right text-gray-500 dark:text-gray-400 stripe" >
+        <div class="relative overflow-x-auto  lg:hidden">
+
+            <table id="ls" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 stripe">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -275,7 +282,6 @@
                         <th scope="col" class="px-6 py-3">
                             Username
                         </th>
-
                         <th scope="col" class="px-6 py-3">
                             Action
                         </th>
@@ -290,12 +296,10 @@
                             <td scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
                                 {{ $staf->username }}
                             </td>
-                                
-
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <form action="{{ route('deleteStaf', $staf->id) }}" method="POST">
                                     @if (isset($staf->id))
-                                        <a href="{{ route('editStaf', $staf->id) }}"
+                                        <a title="Ubah" href="{{ route('editStaf', $staf->id) }}"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-primary"
                                             data-bs-toggle="modal" data-bs-target="#edit-{{ $staf->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -309,7 +313,7 @@
                                     @endif
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
+                                    <button title="Hapus" type="submit"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
@@ -318,7 +322,7 @@
                                         </svg>
                                     </button>
                                 </form>
-                            </th>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

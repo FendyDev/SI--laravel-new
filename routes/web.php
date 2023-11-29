@@ -3,8 +3,9 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuperAdminController;
-
+use App\Models\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ use App\Http\Controllers\SuperAdminController;
 
 //? Default Route
 Route::get('/dashboard', [Controller::class, 'index'])->name('/');
-Route::redirect('home','login');
-Route::redirect('/','login');
+Route::redirect('home', 'login');
+Route::redirect('/', 'login');
 
 //! Route for Authentication
 Route::get('/login', [AdminController::class, 'login'])->name('login');
@@ -28,7 +29,6 @@ Route::post('Auth', [Controller::class, 'Auth'])->name('Auth');;
 
 //! Route for logout
 Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
-
 
 //? Route for Super Admin and Admin
 Route::middleware('web')->group(function () {
@@ -53,11 +53,10 @@ Route::middleware(['checkRole:SuperAdmin, web'])->group(function () {
    Route::get('/admin-account/{id}', [SuperAdminController::class, 'edit'])->name('edit');
    Route::put('/admin-account/{id}', [SuperAdminController::class, 'update'])->name('update');
    Route::delete('/admin-account/{id}', [SuperAdminController::class, 'destroy'])->name('delete');
-   
 });
 
 //? Route for Admin
-Route::middleware(['checkRole:Admin, web'])->group(function (){
+Route::middleware(['checkRole:Admin, web'])->group(function () {
    //View Folder and Add File
    Route::get('folder', [AdminController::class, 'showFolder'])->name('folder');
    Route::get('inFolder{id}', [AdminController::class, 'inFolder'])->name('inFolder');
@@ -75,4 +74,12 @@ Route::middleware(['checkRole:Staff, staf'])->group(function () {
    Route::get('/folders{id}', [AdminController::class, 'inFolderS'])->name('inFolderS');
    Route::post('/files', [Controller::class, 'addFileS'])->name('addFileS');
    Route::delete('/files/{id}', [Controller::class, 'deleteFileS'])->name('deleteFileS');
+  
 });
+
+//? Route for Profile
+Route::middleware(['web'])->group(function () {
+   Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+   Route::put('/profile{id}', [ProfileController::class, 'update'])->name('profile.update');
+});
+{{  }}

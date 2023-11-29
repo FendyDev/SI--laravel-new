@@ -66,6 +66,7 @@ class AdminController extends Controller
                 'password' => bcrypt($request['password']),
                 'role' => $request['role'],
                 'level' => 'Staff',
+                'image' => $request['image'],
             ]);
         }
         if ($cek == 'Admin') {
@@ -77,6 +78,7 @@ class AdminController extends Controller
                 'password' => bcrypt($request['password']),
                 'role' => $adminRole,
                 'level' => 'Staff',
+                'image' => $request['image'],
             ]);
         }
 

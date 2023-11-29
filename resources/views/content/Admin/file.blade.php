@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('container')
-    <div class="container px-5 mx-auto justify-center items-center">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="container px-2 mx-10 justify-center items-center">
+        <div class="relative">
             <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 light:text-black">Data Files</h2>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdmin">
+            <button title="Tambah" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdmin">
                 Tambah File +
             </button>
             @if (session('success'))
@@ -68,16 +68,73 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-success">Kirim</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                    <button title="Kirim" type="submit" class="btn btn-success">Kirim</button>
+                                    <button title="Kembali" type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="lg:hidden overflow-x-scroll">
 
-            <table class=" mt-5 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-auto stripe"
+                <table class=" mt-5 text-sm text-left rtl:text-right text-gray-500  table-auto stripe"
+                id="ls">
+                <thead class="text-xs text-gray-200  bg-gray-50  ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            No.
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nama File
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tanggal
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Aksi
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    @foreach ($folder as $view)
+                    <tr class="bg-white border-b ">
+                        <th scope="row" class="px-4 py-4  font-medium text-gray-900 whitespace-nowrap ">
+                                {{ $loop->iteration }}
+                            </th>
+                            <th scope="row" class="px-6 py-4 max-w-xs  text-xs font-medium text-gray-900 ">
+                                <p class="text-clip overflow-hidden line-clamp-2">
+                                    {{ $view->nama_file }}
+                                </p>
+                            </th>
+                         
+                            <th scope="row" class="px-6 py-4 text-xs max-w-xs  font-medium text-gray-900 ">
+                                <p class="text-clip overflow-hidden line-clamp-2">
+                                    {{ $view->created_at }}
+                                </p>
+                            </th>
+                            <td class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <form action="{{ route('deleteFile', $view->id) }}" method="POST">
+                                    <a title="Download" href="uploads/documents/{{ $view->nama_file }}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs px-2 no-underline py-2 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                    download="uploads/documents/{{ $view->nama_file }}"><i class="mdi mdi-download" style="font-size: 18px"></i></a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button title="Hapus" title="Hapus" type="submit"
+                                    class="focus:outline-none -ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-2 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                        <i class="mdi mdi-delete" style="font-size: 17px"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
+                </div>
+                <div class="hidden lg:block">
+                    
+                <table class=" mt-5 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-auto stripe"
                 id="dt">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -109,7 +166,7 @@
                                 {{ $loop->iteration }}
                             </th>
                             <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
-                                {{ $view->nama_file }}
+                                    {{ $view->nama_file }}
                             </th>
                             <th scope="row" class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap">
                                 {{ $view->pengirim }}
@@ -122,16 +179,16 @@
                             </th>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <form action="{{ route('deleteFile', $view->id) }}" method="POST">
-                                    <a href="uploads/documents/{{ $view->nama_file }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-success"
-                                        download="uploads/documents/{{ $view->nama_file }}">Download</a>
+                                    <a title="Download" title="Ubah" href="uploads/documents/{{ $view->nama_file }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-success"
+                                    download="uploads/documents/{{ $view->nama_file }}">Download</a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                    <button title="Hapus" title="Hapus" type="submit"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path
+                                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                         </svg>
                                     </button>
                                 </form>
@@ -141,8 +198,9 @@
                 </tbody>
             </table>
         </div>
+        </div>
     </div>
-
+    
     <script>
         // set the modal menu element
         const $targetEl = document.getElementById('modalEl');

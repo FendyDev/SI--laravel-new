@@ -62,6 +62,7 @@ class SuperAdminController extends Controller
             'password' => Hash::make($request['password']),
             'role' => $request['role'],
             'level' => 'admin',
+            'image' => $request['image'],
         ]);
 
         return redirect()->route('lihat')->with('success', 'Berhasil Menambahkan Akun');

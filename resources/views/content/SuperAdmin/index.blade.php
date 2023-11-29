@@ -20,8 +20,8 @@
                   <h1 class="text-base font-semibold text-blue-600 lg:text-2xl">Selamat Datang {{ Auth::guard('web')->user()->nama_lengkap }} 👋 , di <span class="block font-bold text-gray-700 text-3xl">Web Management System</span></h1>
                   <h2 class="font-medium text-gray-700 text-lg mb-5">SMK Negeri 2 Magelang</h2>
                   <p class="font-medium text-gray-700 mb-10 leading-relaxed"> Sebuah platform 
-                     inovatif yang memudahkan Anda mengunggah dan menyimpan hasil rapat dengan efisien. Temukan kenyamanan dan 
-                     kecepatan dalam berbagi informasi penting di dunia pendidikan.</p>
+                inovatif yang memudahkan Anda mengunggah dan menyimpan hasil rapat dengan efisien. Temukan kenyamanan dan 
+                kecepatan dalam berbagi informasi penting di dunia pendidikan.</p>
                       <a href="#" class="text-base  font-semibold text-white bg-blue-600 py-3 px-8 rounded-full 
                       hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">About Developers</a>
                </div>

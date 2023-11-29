@@ -3,7 +3,7 @@
     <div class="flex-col mt-5 ml-5 items-start justify-start  container mx-auto">
 
 
-        <div class="relative overflow-x-auto shadow-md mt-3 w-full mx-auto sm:rounded-lg">
+        <div class="relative overflow-x-auto mt-3 w-full mx-auto ">
             <div class="grid grid items-center space-y-4  ">
                 <div>
                     <!-- Dropdown menu -->
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <table id="dt" class="w-full text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table id="dt" class="w-full text-xs  text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="p-4">
@@ -57,71 +57,77 @@
                                 <td class="w-4 p-4">
                                     {{ $loop->iteration }}
                                 </td>
-                                <td class="px-6 py-4 d-flex ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
-                                    viewBox="0 0 48 48">
-                                    <linearGradient id="Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1" x1="-7.018"
-                                        x2="39.387" y1="9.308" y2="33.533" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0" stop-color="#fac017"></stop>
-                                        <stop offset=".909" stop-color="#e1ab2d"></stop>
-                                    </linearGradient>
-                                    <path fill="url(#Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1)"
-                                        d="M44.5,41h-41C2.119,41,1,39.881,1,38.5v-31C1,6.119,2.119,5,3.5,5h11.597	c1.519,0,2.955,0.69,3.904,1.877L21.5,10h23c1.381,0,2.5,1.119,2.5,2.5v26C47,39.881,45.881,41,44.5,41z">
-                                    </path>
-                                    <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2" x1="5.851"
-                                        x2="18.601" y1="9.254" y2="27.39" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0" stop-color="#fbfef3"></stop>
-                                        <stop offset=".909" stop-color="#e2e4e3"></stop>
-                                    </linearGradient>
-                                    <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2)"
-                                        d="M2,25h20V11H4c-1.105,0-2,0.895-2,2V25z"></path>
-                                    <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hc_WWogVNJDSfZ5_gr3" x1="2"
-                                        x2="22" y1="19" y2="19" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0" stop-color="#fbfef3"></stop>
-                                        <stop offset=".909" stop-color="#e2e4e3"></stop>
-                                    </linearGradient>
-                                    <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hc_WWogVNJDSfZ5_gr3)"
-                                        d="M2,26h20V12H4c-1.105,0-2,0.895-2,2V26z"></path>
-                                    <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4" x1="16.865"
-                                        x2="44.965" y1="39.287" y2="39.792" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0" stop-color="#e3a917"></stop>
-                                        <stop offset=".464" stop-color="#d79c1e"></stop>
-                                    </linearGradient>
-                                    <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4)"
-                                        d="M1,37.875V38.5C1,39.881,2.119,41,3.5,41h41c1.381,0,2.5-1.119,2.5-2.5v-0.625H1z">
-                                    </path>
-                                    <linearGradient id="Om5yvFr6YrdlC0q2Vet0He_WWogVNJDSfZ5_gr5" x1="-4.879"
-                                        x2="35.968" y1="12.764" y2="30.778" gradientUnits="userSpaceOnUse">
-                                        <stop offset=".34" stop-color="#ffefb2"></stop>
-                                        <stop offset=".485" stop-color="#ffedad"></stop>
-                                        <stop offset=".652" stop-color="#ffe99f"></stop>
-                                        <stop offset=".828" stop-color="#fee289"></stop>
-                                        <stop offset="1" stop-color="#fed86b"></stop>
-                                    </linearGradient>
-                                    <path fill="url(#Om5yvFr6YrdlC0q2Vet0He_WWogVNJDSfZ5_gr5)"
-                                        d="M44.5,11h-23l-1.237,0.824C19.114,12.591,17.763,13,16.381,13H3.5C2.119,13,1,14.119,1,15.5	v22C1,38.881,2.119,40,3.5,40h41c1.381,0,2.5-1.119,2.5-2.5v-24C47,12.119,45.881,11,44.5,11z">
-                                    </path>
-                                    <radialGradient id="Om5yvFr6YrdlC0q2Vet0Hf_WWogVNJDSfZ5_gr6" cx="37.836"
-                                        cy="49.317" r="53.875" gradientUnits="userSpaceOnUse">
-                                        <stop offset=".199" stop-color="#fec832"></stop>
-                                        <stop offset=".601" stop-color="#fcd667"></stop>
-                                        <stop offset=".68" stop-color="#fdda75"></stop>
-                                        <stop offset=".886" stop-color="#fee496"></stop>
-                                        <stop offset="1" stop-color="#ffe8a2"></stop>
-                                    </radialGradient>
-                                    <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hf_WWogVNJDSfZ5_gr6)"
-                                        d="M44.5,40h-41C2.119,40,1,38.881,1,37.5v-21C1,15.119,2.119,14,3.5,14h13.256	c1.382,0,2.733-0.409,3.883-1.176L21.875,12H44.5c1.381,0,2.5,1.119,2.5,2.5v23C47,38.881,45.881,40,44.5,40z">
-                                    </path>
-                                </svg>
-                                    <a href="{{ route('inFolderS', $b->id) }}" class="ml-3">
-                                          {{ $b->nama_folder }}
+                                <td class="px-6 py-4 d-flex max-w-xs">
+                                    <a href="{{ route('inFolderS', $b->id) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
+                                        viewBox="0 0 48 48">
+                                        <linearGradient id="Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1" x1="-7.018"
+                                            x2="39.387" y1="9.308" y2="33.533" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0" stop-color="#fac017"></stop>
+                                            <stop offset=".909" stop-color="#e1ab2d"></stop>
+                                        </linearGradient>
+                                        <path fill="url(#Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1)"
+                                            d="M44.5,41h-41C2.119,41,1,39.881,1,38.5v-31C1,6.119,2.119,5,3.5,5h11.597	c1.519,0,2.955,0.69,3.904,1.877L21.5,10h23c1.381,0,2.5,1.119,2.5,2.5v26C47,39.881,45.881,41,44.5,41z">
+                                        </path>
+                                        <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2" x1="5.851"
+                                            x2="18.601" y1="9.254" y2="27.39" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0" stop-color="#fbfef3"></stop>
+                                            <stop offset=".909" stop-color="#e2e4e3"></stop>
+                                        </linearGradient>
+                                        <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2)"
+                                            d="M2,25h20V11H4c-1.105,0-2,0.895-2,2V25z"></path>
+                                        <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hc_WWogVNJDSfZ5_gr3" x1="2"
+                                            x2="22" y1="19" y2="19" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0" stop-color="#fbfef3"></stop>
+                                            <stop offset=".909" stop-color="#e2e4e3"></stop>
+                                        </linearGradient>
+                                        <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hc_WWogVNJDSfZ5_gr3)"
+                                            d="M2,26h20V12H4c-1.105,0-2,0.895-2,2V26z"></path>
+                                        <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4" x1="16.865"
+                                            x2="44.965" y1="39.287" y2="39.792" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0" stop-color="#e3a917"></stop>
+                                            <stop offset=".464" stop-color="#d79c1e"></stop>
+                                        </linearGradient>
+                                        <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hd_WWogVNJDSfZ5_gr4)"
+                                            d="M1,37.875V38.5C1,39.881,2.119,41,3.5,41h41c1.381,0,2.5-1.119,2.5-2.5v-0.625H1z">
+                                        </path>
+                                        <linearGradient id="Om5yvFr6YrdlC0q2Vet0He_WWogVNJDSfZ5_gr5" x1="-4.879"
+                                            x2="35.968" y1="12.764" y2="30.778" gradientUnits="userSpaceOnUse">
+                                            <stop offset=".34" stop-color="#ffefb2"></stop>
+                                            <stop offset=".485" stop-color="#ffedad"></stop>
+                                            <stop offset=".652" stop-color="#ffe99f"></stop>
+                                            <stop offset=".828" stop-color="#fee289"></stop>
+                                            <stop offset="1" stop-color="#fed86b"></stop>
+                                        </linearGradient>
+                                        <path fill="url(#Om5yvFr6YrdlC0q2Vet0He_WWogVNJDSfZ5_gr5)"
+                                            d="M44.5,11h-23l-1.237,0.824C19.114,12.591,17.763,13,16.381,13H3.5C2.119,13,1,14.119,1,15.5	v22C1,38.881,2.119,40,3.5,40h41c1.381,0,2.5-1.119,2.5-2.5v-24C47,12.119,45.881,11,44.5,11z">
+                                        </path>
+                                        <radialGradient id="Om5yvFr6YrdlC0q2Vet0Hf_WWogVNJDSfZ5_gr6" cx="37.836"
+                                            cy="49.317" r="53.875" gradientUnits="userSpaceOnUse">
+                                            <stop offset=".199" stop-color="#fec832"></stop>
+                                            <stop offset=".601" stop-color="#fcd667"></stop>
+                                            <stop offset=".68" stop-color="#fdda75"></stop>
+                                            <stop offset=".886" stop-color="#fee496"></stop>
+                                            <stop offset="1" stop-color="#ffe8a2"></stop>
+                                        </radialGradient>
+                                        <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hf_WWogVNJDSfZ5_gr6)"
+                                            d="M44.5,40h-41C2.119,40,1,38.881,1,37.5v-21C1,15.119,2.119,14,3.5,14h13.256	c1.382,0,2.733-0.409,3.883-1.176L21.875,12H44.5c1.381,0,2.5,1.119,2.5,2.5v23C47,38.881,45.881,40,44.5,40z">
+                                        </path>
+                                    </svg>
+                                    </a>
+                                    <a href="{{ route('inFolderS', $b->id) }}" class="ml-3 no-underline uppercase pt-2 text-clip overflow-hidden line-clamp-2">
+                                          {{ $b->nama_folder }} 
                                     </a>
                                 </td>
-                                <td class="px-6 py-4">
-                                    {{ $b->role }}
+                                <td class="px-6 py-4 max-w-xs">
+                                    <p class="text-clip overflow-hidden line-clamp-2">
+                                        {{ $b->role }} 
+                                    </p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    {{ $b->created_at }}
+                                <td class="px-6 py-4 max-w-xs">
+                                    <p class="text-clip overflow-hidden line-clamp-2">
+                                        {{ $b->created_at }} 
+                                    </p>
                                 </td>
                             </tr>
 
@@ -129,93 +135,5 @@
                     @endforeach
                 </table>
             </div>
-
-            {{-- ADD FOLDER --}}
-            {{-- <div class="modal fade" id="tambahAdmin" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content text-white bg-dark ">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create Folder</h1>
-                        </div>
-                        <div class="modal-body text-white bg-dark ">
-                            <form action="{{ route('createFolder') }}" method="POST" class="needs-validation"
-                                novalidate>
-                                @csrf
-                                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
-                                    <div class="sm:col-span-2">
-                                        <label for="username"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                            Folder</label>
-                                        <input type="text" name="nama_folder" id="username"
-                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Folder Name" required>
-                                    </div>
-                                    <div class="hidden sm:col-span-2">
-                                        <label for="disabled-input-2"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <input type="text" name="role" id="disabled-input-2"
-                                            aria-label="disabled input 2"
-                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="{{ Auth::guard('staf')->user()->role }}" disabled readonly>
-                                    </div>
-                                </div>
-                                <div class="modal-footer mt-3">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
-
-            {{-- EDIT FOLDER
-            @foreach ($folder as $new)
-                <div class="modal fade" id="edit-{{ $new->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-white bg-dark ">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Folder</h1>
-                            </div>
-                            <div class="modal-body text-white bg-dark ">
-                                <form action="{{ route('updateFolder', $new->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
-                                        <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                                Folder</label>
-                                            <input type="text" name="nama_folder" id="username"
-                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Folder Name" value="{{ $new->nama_folder }}" required>
-                                        </div>
-                                        <div class="hidden sm:col-span-2">
-                                            <label for="disabled-input-2"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                            <input type="text" name="role" id="disabled-input-2"
-                                                aria-label="disabled input 2"
-                                                class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                value="{{ Auth::guard('staf')->user()->role }}" disabled readonly>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer mt-3">
-                                        <button type="submit" class="btn btn-success edit">Edit Folder</button>
-                                        <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal">Back</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach --}}
         </div>
-
-
-
-        <!-- Edit user modal -->
     @endsection

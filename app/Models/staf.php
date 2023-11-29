@@ -20,6 +20,7 @@ class staf extends Authenticatable
         'password',
         'role',
         'level',
+        'image',
     ];
 
     // protected $hidden = [

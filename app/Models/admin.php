@@ -19,6 +19,7 @@ class Admin extends Authenticatable
         'password',
         'role',
         'level',
+        'image',
     ];
 
     const CREATED_AT = 'created_at';

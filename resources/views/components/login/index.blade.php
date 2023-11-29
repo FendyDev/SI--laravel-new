@@ -2,13 +2,13 @@
 @section('loginwrap')
     <!-- Pages: Sign In: Boxed -->
     <!-- Page Container -->
-    <div id="page-container" class="mx-auto flex min-h-screen w-full min-w-[320px] flex-col bg-gray-100 ">
+    <div id="page-container" class="mx-auto flex min-h-screen w-full min-w-[320px] flex-col bg-gray-400 ">
         <!-- Page Content -->
         <main id="page-content" class="flex max-w-full flex-auto flex-col">
             <div
                 class="relative mx-auto flex min-h-screen w-full max-w-10xl items-center justify-center overflow-hidden p-4 lg:p-8">
                 <!-- Sign In Section -->
-                <section class="w-full max-w-xl px-6 py-6 lg:px-0 lg:py-0 lg:w-full">
+                <section class="w-full max-w-xl px-6 py-6 lg:px-0 lg:py-0 lg:w-96">
                     <!-- Header -->
                     <header class="mb-10 text-center">
                         <h1 class="mb-2 inline-flex items-center space-x-2 text-2xl font-bold">
@@ -23,8 +23,8 @@
                     <!-- END Header -->
 
                     <!-- Sign In Form -->
-                    <div class="flex flex-col overflow-hidden rounded-lg bg-gray-400 shadow-sm mx-auto ">
-                        <div class="grow p-5 lg:px-16 lg:py-12">
+                    <div class="flex flex-col overflow-hidden rounded-lg bg-gray-200 shadow-lg mx-auto lg:w-auto">
+                        <div class="p-4 lg:px-16 lg:py-12">
                             @if (session('error'))
                                 <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                                     {{ session('error') }}
@@ -36,7 +36,7 @@
                                 @csrf
                                 <div class="space-y-1">
                                     <label for="userName" class="text-sm font-medium">Username</label>
-                                    <input type="text" name="username" id="userName" placeholder="Enter your username"
+                                    <input type="text" name="username" id="userName" placeholder="username"
                                         value="{{ old('username') }}"
                                         class="block w-full rounded-lg border border-gray-200 px-5 py-3 leading-6 placeholder-gray-500 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 "
                                         required autofocus />
@@ -45,7 +45,7 @@
                                     <label for="password" class="text-sm font-medium">Password</label>
                                     <div class="relative">
                                         <input type="password" id="myInput" name="password"
-                                            placeholder="Enter your password"
+                                            placeholder="password"
                                             class="block w-full rounded-lg border border-gray-200 px-5 py-3 leading-6 placeholder-gray-500 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 "
                                             required />
                                         <div onclick="myFunction()" class="cursor-pointer">
@@ -90,10 +90,10 @@
 
                     </div>
 
-                    <div class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                    <div class="mt-6 text-center text-sm text-gray-600 dark:text-gray-600">
                         Powered by
                         <a href="javascript:void(0)"
-                            class="font-medium text-blue-600 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300">Laravel
+                            class="font-medium text-blue-800 hover:text-blue-800 dark:text-blue-800 dark:hover:text-blue-500">Laravel
                             Team</a>
                     </div>
 
