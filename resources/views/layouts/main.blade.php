@@ -55,7 +55,7 @@
         background-color: rgb(255, 255, 255);
         color: inherit;
         padding: 4px;
-        font-size: 12px
+        font-size: 12px;
     }
 </style>
 
@@ -75,16 +75,16 @@
 
     </div>
     <aside
-        class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
-        <div class="text-gray-100 text-xl">
+        class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-800">
+        <div class=" text-xl">
             <div class="p-2 flex items-center">
-                <svg class="w-6 h-6 te  xt-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                <svg class="w-6 h-6 te text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
                 <h1 class="font-bold text-gray-200 text-[15px] ml-3 mt-1">S-Admin</h1>
-                <svg class="bi bi-x ml-36 w-3 h-4 cursor-pointer" onclick="Open()" aria-hidden="true"
+                <svg class="bi bi-x ml-36 w-3 h-4 cursor-pointer text-white" onclick="Open()" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -97,7 +97,7 @@
                         <i class="mdi mdi-pencil-circle w-9 absolute ml-6 mt-[70px] stroke-5 h-6"></i>
                         {{-- <input type="file" id="first" style="display: none;visibility: none;"> --}}
                         <img class="object-cover w-24 h-24 mx-2 rounded-full "
-                        src="uploads/profile/{{ Auth::guard('web')->user()->image ?? 'p.jpg' }}" alt="avatar">
+                            src="uploads/profile/{{ Auth::guard('web')->user()->image ?? 'p.jpg' }}" alt="avatar">
                     </a>
                 </label>
 
@@ -106,13 +106,7 @@
             </div>
 
             <hr class="my-2 text-gray-600">
-
         </div>
-
-        {{-- <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
-      <i class="bi bi-search text-sm"></i>
-      <input type="text" placeholder="search" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none">
-    </div> --}}
 
         <a href="{{ route('/') }}">
             <div
@@ -125,11 +119,45 @@
                 <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
             </div>
         </a>
+        </div>
 
+        <a href="#">
+            <div id="ddf" type="button"
+                class=" p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+                onclick="Close()" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+
+                <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 18 18">
+                    <path
+                        d="M18 5H0v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5Zm-7.258-2L9.092.8a2.009 2.009 0 0 0-1.6-.8H2.049a2 2 0 0 0-2 2v1h10.693Z" />
+                </svg>
+                <span
+                    class="text-[15px] ml-4 text-gray-200 flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Folder</span>
+
+                <svg class="w-3 h-3 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg>
+            </div>
+
+            <ul id="dde" class="dropdowns hidden py-2 space-y-2">
+
+                @foreach (session('Admin') as $item)
+                    <li>
+                        <a href="{{ route('folders', encrypt($item->role)) }}"
+                            class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700"><i class="mdi mdi-circle"></i>&nbsp;&nbsp;{{ $item->role }}</a>
+                            
+                    </li>
+                @endforeach
+            </ul>
+        </a>
+
+        </div>
         <a href="{{ route('lihat') }}">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor" viewBox="0 0 20 18">
                     <path
                         d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
@@ -141,7 +169,7 @@
         <a href="{{ route('listStaf') }}">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor" viewBox="0 0 20 19">
                     <path
                         d="M14.5 0A3.987 3.987 0 0 0 11 2.1a4.977 4.977 0 0 1 3.9 5.858A3.989 3.989 0 0 0 14.5 0ZM9 13h2a4 4 0 0 1 4 4v2H5v-2a4 4 0 0 1 4-4Z" />
@@ -156,7 +184,7 @@
         <a href="{{ route('profile') }}">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor" viewBox="0 0 14 18">
                     <path
                         d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
@@ -170,7 +198,7 @@
         <a href="{{ route('logout') }}">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 16 16">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3" />
@@ -196,7 +224,7 @@
     </div>
     <aside
         class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
-        <div class="text-gray-100 text-xl">
+        <div cla text-xl>
             <div class="p-2 flex items-center">
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 20">
@@ -204,7 +232,7 @@
                         d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
                 <h1 class="font-bold text-gray-200 text-[15px] ml-3 mt-1">Admin</h1>
-                <svg class="bi bi-x ml-36 w-3 h-4 cursor-pointer" onclick="Open()" aria-hidden="true"
+                <svg class="bi bi-x ml-36 w-3 h-4 cursor-pointer text-white" onclick="Open()" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -216,7 +244,7 @@
                         <i class="mdi mdi-pencil-circle w-9 absolute ml-6 mt-[70px] stroke-5 h-6"></i>
                         {{-- <input type="file" id="first" style="display: none;visibility: none;"> --}}
                         <img class="object-cover w-24 h-24 mx-2 rounded-full "
-                        src="uploads/profile/{{ Auth::guard('web')->user()->image ?? 'p.jpg' }}" alt="avatar">
+                            src="uploads/profile/{{ Auth::guard('web')->user()->image ?? 'p.jpg' }}" alt="avatar">
                     </a>
                 </label>
 
@@ -226,11 +254,7 @@
             <hr class="my-2 text-gray-600">
         </div>
 
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
-            <i class="bi bi-search text-sm"></i>
-            <input type="text" placeholder="search"
-                class="text-[15px] text-white ml-4 w-full bg-transparent focus:outline-none">
-        </div>
+
 
         <a href="{{ route('/') }}">
             <div
@@ -247,8 +271,8 @@
         <a href="{{ route('listStaf') }}">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 19">
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 19">
                     <path
                         d="M14.5 0A3.987 3.987 0 0 0 11 2.1a4.977 4.977 0 0 1 3.9 5.858A3.989 3.989 0 0 0 14.5 0ZM9 13h2a4 4 0 0 1 4 4v2H5v-2a4 4 0 0 1 4-4Z" />
                     <path
@@ -275,8 +299,8 @@
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18">
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 14 18">
                     <path
                         d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                 </svg>
@@ -288,8 +312,8 @@
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 16 16">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3" />
                 </svg>
@@ -310,7 +334,7 @@
 
     <aside
         class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-900">
-        <div class="text-gray-100 text-xl">
+        <div cla text-xl">
             <div class="p-2 flex items-center">
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 20">
@@ -318,7 +342,7 @@
                         d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
                 <h1 class="font-bold text-gray-200 text-[15px] ml-3 mt-1">Staff</h1>
-                <svg class="bi bi-x ml-36 w-3 h-4 cursor-pointer" onclick="Open()" aria-hidden="true"
+                <svg class="bi bi-x ml-36 w-3 h-4 cursor-pointer text-white" onclick="Open()" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -331,7 +355,7 @@
                         <i class="mdi mdi-pencil-circle w-9 absolute ml-6 mt-[70px] stroke-5 h-6"></i>
                         {{-- <input type="file" id="first" style="display: none;visibility: none;"> --}}
                         <img class="object-cover w-24 h-24 mx-2 rounded-full "
-                        src="uploads/profile/{{ Auth::guard('staf')->user()->image ?? 'p.jpg' }}" alt="avatar">
+                            src="uploads/profile/{{ Auth::guard('staf')->user()->image ?? 'p.jpg' }}" alt="avatar">
                     </a>
                 </label>
 
@@ -340,11 +364,6 @@
             </div>
 
             <hr class="my-2 text-gray-600">
-        </div>
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
-            <i class="bi bi-search text-sm"></i>
-            <input type="text" placeholder="search"
-                class="text-[15px] ml-4 w-full bg-transparent focus:outline-none">
         </div>
         <a href="{{ route('/') }}">
             <div
@@ -375,8 +394,8 @@
         <a href="{{ route('profile') }}">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18">
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 14 18">
                     <path
                         d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                 </svg>
@@ -387,8 +406,8 @@
         <a href="{{ route('logout') }}">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 16 16">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3" />
                 </svg>
@@ -408,6 +427,12 @@
             document.querySelector('.sidebar').classList.toggle('left-[-300px]')
         };
 
+        function Close(d) {
+            document.querySelector('.dropdowns').classList.toggle('hidden')
+        };
+
+
+
         // let btn = document.getElementById('btn34')
         // let modal = document.getElementById('modals')
         // let cancel = document.getElementById('batals')
@@ -426,8 +451,8 @@
         //     if (event.target = overlay) {
         //         modal.classList.add('hidden')
         //     }
-        // }
     </script>
+
 
 </body>
 

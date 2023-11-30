@@ -24,9 +24,7 @@ class ProfileController extends Controller
             return view('components.profile.index', [
                 'data' => $data
             ]);
-        }
-        else if(Auth::guard('staf')->user())
-        {
+        } else if (Auth::guard('staf')->user()) {
             $id = Auth::guard('staf')->user()->id;
             $data = staf::where('id', $id)->get();
             return view('components.profile.index', [
@@ -41,43 +39,58 @@ class ProfileController extends Controller
         if (Auth::guard('web')->user()) {
             $user = Admin::find($id);
             $img = $request->file('image');
-            if($img){
+            if ($img) {
                 $filename = $img->getClientOriginalName();
                 $img->move(public_path('uploads/profile'), $filename);
-            }else {
+            } else {
                 $filename = Auth::guard('web')->user()->image;
             }
             if ($filename) {
                 $user->update([
                     'username' => $request->username,
                     'nama_lengkap' => $request->nama_lengkap,
-                    'password' => bcrypt($request->password),
+                    'password' => $request->password,
+                    'role' => $request->role,
                     'image' => $filename
                 ]);
             }
-            
-    
+
+
             $user->save();
-    
-            return redirect()->back()->with('succes','Foto Pro{{ file }} Berhasil Diganti!');
-        }
-        else if(Auth::guard('staf')->user())
-        {
+
+            return redirect()->back()->with('success', 'Profile Berhasil Diubah!');
+        } else if (Auth::guard('staf')->user()) {
             $user = staf::find($id);
             $img = $request->file('image');
-            $filename = $img->getClientOriginalName();
-            $img->move(public_path('uploads/profile'), $filename);
-            $user->update([
-                'username' => $request->username,
-                'nama_lengkap' => $request->nama_lengkap,
-                'password' => bcrypt($request->password),
-                'image' => $filename
-            ]);
-    
+            if ($img) {
+                $filename = $img->getClientOriginalName();
+                $img->move(public_path('uploads/profile'), $filename);
+            } else {
+                $filename = Auth::guard('web')->user()->image;
+            }
+            if ($filename) {
+                $user->update([
+                    'username' => $request->username,
+                    'nama_lengkap' => $request->nama_lengkap,
+                    'password' => $request->password,
+                    'image' => $filename
+                ]);
+            }
+
             $user->save();
-    
-            return redirect()->back()->with('succes','Foto Pro{{ file }} Berhasil Diganti!');
+
+            return redirect()->back()->with('success', 'Profile Berhasil Diubah!');
         }
     }
-    
+
+    // Menghapus Foto Profile
+    public function hapus(Request $request)
+    {
+        $user = admin::find(Auth::guard('web')->user()->id);
+        $user->update([
+            'image' => 'p.jpg'
+        ]);
+
+        return redirect()->back()->with('delete', 'Berhasil Menghapus Profile');
+    }
 }

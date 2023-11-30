@@ -16,10 +16,10 @@ class SuperAccount extends Seeder
     public function run()
     {
         DB::table('admins')->insert([
-            'username' => 'super1',
-            'nama_lengkap' => 'super1',
-            'password' => Hash::make('super1'),
-            'role' => '', 
+            'username' => 'super',
+            'nama_lengkap' => 'Kurniawan Basuki',
+            'password' => Hash::make('12345678'),
+            'role' => 'Kepala Sekolah', 
             'level' => 'SuperAdmin'
         ]);
 

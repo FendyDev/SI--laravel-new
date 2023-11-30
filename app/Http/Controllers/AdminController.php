@@ -49,12 +49,6 @@ class AdminController extends Controller
             'username' => 'required|min:3',
             'nama_lengkap' => 'required',
             'password' => 'required|min:8',
-        ], [
-            'username.required' => 'Username Wajib Di isi',
-            'username.min' => 'Bidang username minimal harus 3 karakter.',
-            'nama_lengkap.required' => 'nama lengkap Wajib Di isi',
-            'password.required' => 'Password Wajib Di isi',
-            'password.min' => 'Password min 8 Digit',
         ]);
 
         $cek = Auth::guard('web')->user()->level;
@@ -116,7 +110,7 @@ class AdminController extends Controller
         $data = staf::find($id);
         $data->update($request->only(['username', 'nama_lengkap', 'role', 'level']));
 
-        return redirect()->route('listStaf')->with('status', 'Berhasil Mengedit Akun');
+        return redirect()->route('listStaf')->with('status', 'Berhasil Mengubah Akun');
     }
 
     public function deleteStaf($id)
@@ -138,7 +132,7 @@ class AdminController extends Controller
             'folder' => $data,
         ]);
 
-        // if (Auth::guard('web','Staff')->user()->level == 'Admin' ?? 'Staff' ) {
+        // if (Auth::guard('web')->user()->level == 'SuperAdmin' ?? 'Staff' ) {
         // }
         // else if (Auth::guard('staf')->user()->level == 'Staff') {
         //     $role = Auth::guard('staf')->user()->role;
@@ -160,13 +154,23 @@ class AdminController extends Controller
 
     public function createFolder(Request $request)
     {
-        $stafRole = Auth::user()->role;
+        if (Auth::guard('web')->user()->level == 'SuperAdmin') {
+            $stafRole =  $request['role'];
+            Folder::create([
+                'nama_folder' => $request['nama_folder'],
+                'role'  => $stafRole,
+            ]);
+            return redirect()->back()->with('status', 'Berhasil Menambahkan Folder');
+        } else if (Auth::guard('web')->user()->level == 'Admin') {
 
-        Folder::create([
-            'nama_folder' => $request['nama_folder'],
-            'role'  => $stafRole,
-        ]);
-        return redirect()->route('folder');
+            $stafRole = Auth::user()->role;
+
+            Folder::create([
+                'nama_folder' => $request['nama_folder'],
+                'role'  => $stafRole,
+            ]);
+            return redirect()->back()->with('status', 'Berhasil Menambahkan Folder');
+        }
     }
 
 
@@ -186,7 +190,7 @@ class AdminController extends Controller
             }
         }
 
-        return redirect()->route('folder');
+        return redirect()->back()->with('status', 'Berhasil Mengubah Folder');
     }
 
     public function deleteFolder($id)
@@ -194,24 +198,34 @@ class AdminController extends Controller
         $folder = Folder::findOrFail($id);
         $folder->delete();
 
-        return redirect()->route('folder');
+        return redirect()->back()->with('delete', 'Berhasil Menghapus Folder');
     }
 
-    public function inFolder($id)
+        public function inFolder($id)
     {
-        $folder = file::where('id_folder', $id)->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
-        return view('content.Admin.file', [
-            'folder' => $folder,
-            'id_folder' => $id,
-        ]);
+        $folder = Folder::where('id', decrypt($id))->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
+        if ($folder->isEmpty()) {
+            return redirect()->back();
+        } else {
+            $file = file::where('id_folder', decrypt($id))->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
+            return view('content.Admin.file', [
+                'folder' => $file,
+                'id_folder' => $id,
+            ]);
+        }
     }
 
     public function inFolderS($id)
     {
-        $folder = file::where('id_folder', $id)->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
-        return view('content.staff.file', [
-            'folder' => $folder,
-            'id_folder' => $id,
-        ]);
+        $folder = Folder::where('id', decrypt($id))->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
+        if ($folder->isEmpty()) {
+            return redirect()->back();
+        } else {
+            $file = file::where('id_folder', decrypt($id))->where('role', Auth::guard('web')->user()->role ?? Auth::guard('staf')->user()->role)->get();
+            return view('content.staff.file', [
+                'folder' => $file,
+                'id_folder' => $id,
+            ]);
+        }
     }
 }

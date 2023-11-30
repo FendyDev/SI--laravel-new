@@ -2,7 +2,7 @@
 @section('loginwrap')
     <!-- Pages: Sign In: Boxed -->
     <!-- Page Container -->
-    <div id="page-container" class="mx-auto flex min-h-screen w-full min-w-[320px] flex-col bg-gray-400 ">
+    <div id="page-container" class="mx-auto flex min-h-screen w-full min-w-[320px] flex-col bg-slate-50 ">
         <!-- Page Content -->
         <main id="page-content" class="flex max-w-full flex-auto flex-col">
             <div
@@ -10,11 +10,10 @@
                 <!-- Sign In Section -->
                 <section class="w-full max-w-xl px-6 py-6 lg:px-0 lg:py-0 lg:w-96">
                     <!-- Header -->
-                    <header class="mb-10 text-center">
+                    <header class="mb-4 text-center">
                         <h1 class="mb-2 inline-flex items-center space-x-2 text-2xl font-bold">
-                            <img src="img/smk2.png"
-                                class="hi-mini hi-cube-transparent inline-block h-5 w-5 text-blue-600 dark:text-blue-500">
-                            <span>SMKN 2</span>
+                            <img src="img/smk2.png" class="hi-cube-transparent inline-block h-12 w-12 text-blue-600 dark:text-blue-500">
+                            <span>SMKN 2 Magelang</span>
                         </h1>
                         <h2 class="text-sm font-medium text-gray-60">
                             Welcome, please Login to your dashboard
@@ -23,7 +22,7 @@
                     <!-- END Header -->
 
                     <!-- Sign In Form -->
-                    <div class="flex flex-col overflow-hidden rounded-lg bg-gray-200 shadow-lg mx-auto lg:w-auto">
+                    <div class="flex flex-col overflow-hidden rounded-lg bg-gray-300 shadow-lg mx-auto lg:w-auto">
                         <div class="p-4 lg:px-16 lg:py-12">
                             @if (session('error'))
                                 <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
@@ -36,10 +35,15 @@
                                 @csrf
                                 <div class="space-y-1">
                                     <label for="userName" class="text-sm font-medium">Username</label>
-                                    <input type="text" name="username" id="userName" placeholder="username"
+                                    <div class="relative">
+                                        <svg class="w-6 h-6 text-gray-800 text-black absolute top-1/2 -translate-y-1/2 left-3 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18">
+                                            <path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
+                                          </svg>
+                                          <input type="text" name="username" id="userName" placeholder="username"
                                         value="{{ old('username') }}"
                                         class="block w-full rounded-lg border border-gray-200 px-5 py-3 leading-6 placeholder-gray-500 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 "
                                         required autofocus />
+                                    </div>
                                 </div>
                                 <div class="space-y-1">
                                     <label for="password" class="text-sm font-medium">Password</label>
@@ -48,6 +52,9 @@
                                             placeholder="password"
                                             class="block w-full rounded-lg border border-gray-200 px-5 py-3 leading-6 placeholder-gray-500 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 "
                                             required />
+                                            <svg class="w-6 h-6 text-gray-800 text-black absolute top-1/2 -translate-y-1/2 left-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                                                <path d="M14 7h-1.5V4.5a4.5 4.5 0 1 0-9 0V7H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-5 8a1 1 0 1 1-2 0v-3a1 1 0 1 1 2 0v3Zm1.5-8h-5V4.5a2.5 2.5 0 1 1 5 0V7Z"/>
+                                            </svg>
                                         <div onclick="myFunction()" class="cursor-pointer">
                                             <svg id="hide1"
                                                 class="text-black w-6 h-6 text-gray-800 absolute top-1/2 right-1 -translate-y-1/2 "

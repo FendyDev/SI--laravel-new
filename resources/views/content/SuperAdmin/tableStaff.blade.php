@@ -50,7 +50,7 @@
             <div class="modal-dialog">
                 <div class="modal-content text-white bg-dark ">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Staff</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Akun Staff</h1>
                     </div>
                     <div class="modal-body text-white bg-dark ">
                         <form action="{{ route('createStaf') }}" method="POST">
@@ -58,14 +58,14 @@
                             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                 <div class="sm:col-span-2">
                                     <label for="username"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                        class="block mb-2 text-sm font-medium text-white">Username</label>
                                     <input type="text" name="username" id="username"
                                         class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Username" required>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="nama_lengkap"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                        class="block mb-2 text-sm font-medium text-white">Nama
                                         Lengkap</label>
                                     <input type="text" name="nama_lengkap" id="nama_lengkap"
                                         class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -73,26 +73,21 @@
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="pw"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                        class="block mb-2 text-sm font-medium text-white">Password</label>
                                     <input type="password" name="password" id="pw"
                                         class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Password" required>
                                 </div>
                                 <div class="w-full">
                                     <label for="rl"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <select name="role" id="rl"
-                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 cursor-pointer dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        required>
-                                        <option value="WKS 1" >WKS 1</option>
-                                        <option value="WKS 2" >WKS 2</option>
-                                        <option value="WKS 3" >WKS 3</option>
-                                        <option value="WKS 4" >WKS 4</option>
-                                    </select>
+                                        class="block mb-2 text-sm font-medium text-white">Status</label>
+                                    <input type="text" name="role" id="rl"
+                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="Status" required>
                                 </div>
                                 <div class="w-full">
                                     <label for="disabled-input-2"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                        class="block mb-2 text-sm font-medium text-white">Role</label>
                                     <input type="text" name="level" id="disabled-input-2" aria-label="disabled input 2"
                                         class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         value="Staff" disabled readonly>
@@ -100,7 +95,8 @@
                             </div>
                             <div class="modal-footer mt-3">
                                 <button title="Kirim" type="submit" class="btn btn-success">Kirim</button>
-                                <button title="Kembali" type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                <button title="Kembali" type="button" class="btn btn-danger"
+                                    data-bs-dismiss="modal">Batal</button>
                             </div>
                         </form>
                     </div>
@@ -125,7 +121,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-white bg-dark ">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Staff</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Akun Staff</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
                             <form action="{{ route('updateStaf', $a->id) }}" method="POST">
@@ -134,14 +130,14 @@
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-3">
                                     <div class="sm:col-span-2">
                                         <label for="username"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                            class="block mb-2 text-sm font-medium text-white">Username</label>
                                         <input type="text" name="username" id="username"
                                             class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="Username" value="{{ $a->username }}" required>
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="nama_lengkap"
-                                            class="block mb-2 text-sm fontium text-gray-900 dark:text-white">Nama
+                                            class="block mb-2 text-sm fontium text-white">Nama
                                             Lengkap</label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
                                             class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -149,28 +145,24 @@
                                     </div>
                                     <div class="w-full">
                                         <label for="rl"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <select name="role" id="rl"
-                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 cursor-pointer dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            required>
-                                            <option value="WKS 1" {{ $a->role == 'WKS 1' ? 'selected' : '' }}>WKS 1</option>
-                                            <option value="WKS 2" {{ $a->role == 'WKS 2' ? 'selected' : '' }}>WKS 2</option>
-                                            <option value="WKS 3" {{ $a->role == 'WKS 3' ? 'selected' : '' }}>WKS 3</option>
-                                            <option value="WKS 4" {{ $a->role == 'WKS 4' ? 'selected' : '' }}>WKS 4</option>
-                                        </select>
+                                            class="block mb-2 text-sm font-medium text-white">Status</label>
+                                        <input type="text" name="role" id="rl"
+                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Status" value="{{ $a->role }}" required>
                                     </div>
                                     <div class="w-full">
                                         <label for="disabled-input-2"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                            class="block mb-2 text-sm font-medium text-white">Role</label>
                                         <input type="text" name="level" id="disabled-input-2"
                                             aria-label="disabled input 2"
-                                            class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-40 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             value="{{ $a->level }}" disabled readonly>
                                     </div>
                                 </div>
                                 <div class="modal-footer mt-3">
-                                    <button title="Ubah" type="submit" class="btn btn-success">Edit Akun</button>
-                                    <button title="Kembali" type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button title="Ubah" type="submit" class="btn btn-success">Ubah</button>
+                                    <button title="Kembali" type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </form>
                         </div>
@@ -201,7 +193,7 @@
                             Role
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -226,7 +218,7 @@
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <form action="{{ route('deleteStaf', $staf->id) }}" method="POST">
                                     @if (isset($staf->id))
-                                        <a title="Ubah" href="{{ route('editStaf', $staf->id) }}"
+                                        <a title="Ubah"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-primary"
                                             data-bs-toggle="modal" data-bs-target="#edit-{{ $staf->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -241,7 +233,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button title="Hapus" type="submit"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                             <path
@@ -267,7 +259,7 @@
                             Username
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -283,7 +275,7 @@
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <form action="{{ route('deleteStaf', $staf->id) }}" method="POST">
                                     @if (isset($staf->id))
-                                        <a title="Ubah" href="{{ route('editStaf', $staf->id) }}"
+                                        <a title="Ubah"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-primary"
                                             data-bs-toggle="modal" data-bs-target="#edit-{{ $staf->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -298,7 +290,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button title="Hapus" type="submit"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                             <path

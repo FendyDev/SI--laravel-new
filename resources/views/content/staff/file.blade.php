@@ -46,7 +46,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-white bg-dark ">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create File</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah File</h1>
                         </div>
                         <div class="modal-body text-white bg-dark ">
                             <form action="{{ route('addFileS') }}" method="POST" class="needs-validation"
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="modal-footer mt-3">
                                     <button title="Kirim" type="submit" class="btn btn-success">Kirim</button>
-                                    <button title="Kembali" type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                    <button title="Kembali" type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </form>
                         </div>
@@ -126,7 +126,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button title="Hapus" type="submit"
-                                    class="focus:outline-none -ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-2 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    class="focus:outline-none -ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-2 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="return confirm('Yakin ingin menghapus?')">
                                         <i class="mdi mdi-delete" style="font-size: 17px"></i>
                                     </button>
                                 </form>
@@ -189,7 +189,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button title="Hapus" type="submit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger">
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                     <path

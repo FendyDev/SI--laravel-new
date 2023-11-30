@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\staf;
 use App\Models\admin;
+use App\Models\Folder;
+use App\Models\file;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -48,12 +50,6 @@ class SuperAdminController extends Controller
             'username' => 'required|min:3',
             'nama_lengkap' => 'required',
             'password' => 'required|min:8',
-        ], [
-            // 'username.required' => 'Username Wajib Di isi',
-            // 'username.min' => 'Bidang username minimal harus 3 karakter.',
-            // 'nama_lengkap.required' => 'nama lengkap Wajib Di isi',
-            // 'password.required' => 'Password Wajib Di isi',
-            // 'password.min' => 'Password min 8 Digit',
         ]);
 
         admin::create([
@@ -65,7 +61,7 @@ class SuperAdminController extends Controller
             'image' => $request['image'],
         ]);
 
-        return redirect()->route('lihat')->with('success', 'Berhasil Menambahkan Akun');
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Akun');
     }
 
     public function lihat()
@@ -87,23 +83,48 @@ class SuperAdminController extends Controller
         $request->validate([
             'username' => 'required|min:3',
             'nama_lengkap' => 'required',
-        ], [
-            'username.required' => 'Username Wajib Di isi',
-            'username.min' => 'Bidang username minimal harus 3 karakter.',
-            'nama_lengkap.required' => 'nama lengkap Wajib Di isi',
         ]);
         $admin = admin::findOrFail($id);
         $admin->update($request->only(['username', 'nama_lengkap', 'role', 'level']));
         $admin->save();
 
-        return redirect()->route('lihat')->with('success', 'Berhasil Mengedit Akun');
+        return redirect()->back()->with('success', 'Berhasil Mengedit Akun');
     }
 
     public function destroy($id)
     {
         $admin = admin::findOrFail($id);
         $admin->delete();
-        return redirect()->route('lihat')->with('delete', 'Berhasil Menghapus Akun');
+        return redirect()->back()->with('delete', 'Berhasil Menghapus Akun');
     }
 
+    public function folders($role)
+    {
+        $data = Folder::where('role', decrypt($role))->get();
+        return view('content.SuperAdmin.folder', [
+            'data' => $data,
+            'role' => decrypt($role),
+        ]);
+    }
+
+    public function open($id, $role)
+    {   
+        $file = file::where('id_folder', $id)->where('role', $role)->get();
+        return view('content.SuperAdmin.files', [
+            'folder' => $file,
+            'id_folder' => $id,
+            'role'=> $role
+        ]);
+    }
+
+    public function createFolder(Request $request)
+    {
+        $stafRole =  $request['role'];
+        Folder::create([
+            'nama_folder' => $request['nama_folder'],
+            'role'  => $stafRole,
+        ]);
+        return redirect()->back()->with('status', 'Berhasil Menambahkan Folder');
+    }
 }
+{{  }}
