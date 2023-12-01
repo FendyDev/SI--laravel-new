@@ -50,7 +50,6 @@ class ProfileController extends Controller
                     'username' => $request->username,
                     'nama_lengkap' => $request->nama_lengkap,
                     'password' => $request->password,
-                    'role' => $request->role,
                     'image' => $filename
                 ]);
             }
