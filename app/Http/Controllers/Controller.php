@@ -19,7 +19,7 @@ class Controller extends BaseController
     public function Auth(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'username' => 'required|string',
             'password' => 'required',
         ], [
             'username.required' => 'Username wajib diisi',
@@ -83,11 +83,11 @@ class Controller extends BaseController
             // $request->validate([
             //     'document' => 'required|mimes:pdf,doc,docx|max:2048',
             // ]);
-            
+
             $document = $request->file('document');
             $fileName = time() . "_" . $document->getClientOriginalName();
             $document->move(public_path('uploads/documents'), $fileName);
-            $stafRole =  $request['role']; 
+            $stafRole =  $request['role'];
             File::create([
                 'id_folder' => $request->id_folder,
                 'nama_file' => $fileName,
