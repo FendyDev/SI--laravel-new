@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('container')
     @foreach ($data as $dt)
-        <div class="container pt-8">
+        <div class="container pt-8 mb-10">
             <h1>Profile</h1>
             <div class="flex justify-between">
                 <div class="flex">

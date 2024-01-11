@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('container')
-<section id="home" class="pt-36">
+<section id="home" class="pt-[5rem]">
     <div class="container">
        <div class="flex flex-wrap ">
           <div class="w-full self-center px-4 lg:w-1/2">

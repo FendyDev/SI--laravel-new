@@ -48,7 +48,7 @@
         color: gray;
     }
 
-    .dataTables_wrapper .dataTables_length select {
+    .dataTables_wrapper .dataTables_length select{
         border: 1px solid #aaa;
         border-radius: 3px;
         padding: 5px;
@@ -59,11 +59,11 @@
     }
 </style>
 
-<body class="bg-slate-200 overflow-x-hidden ">
+<body class="bg-white overflow-x-hidden ">
 
-    <div class="w-screen ">
+    <div class="w-screen">
         @if (Auth::guard('web')->check() && Auth::guard('web')->user()->level == 'SuperAdmin')
-            <nav class="border-gray-400 bg-gray-800  flex justify-between items-center px-5 py-3">
+            <nav class="border-gray-400 bg-gray-900  flex justify-between items-center px-5 py-3 shadow-sm shadow-current">
                 <span class="s text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
                     <i class="mdi mdi-menu text-white text-3xl"></i>
                 </span>
@@ -75,7 +75,7 @@
 
     </div>
     <aside
-        class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-800">
+        class="sidebar z-10 fixed top-0 bottom-0  left[300px] p-2 w-[-300px] overflow-y-auto text-center bg-gray-950 shadow-md shadow-current">
         <div class=" text-xl">
             <div class="p-2 flex items-center">
                 <svg class="w-6 h-6 te text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -108,7 +108,7 @@
             <hr class="my-2 text-gray-600">
         </div>
 
-        <a href="{{ route('/') }}">
+        <a href="{{ route('/') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -116,12 +116,12 @@
                     <path
                         d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                 </svg>
-                <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
+                <span class="text-[15px] ml-4 text-gray-200 no-underline">Dashboard</span>
             </div>
         </a>
         </div>
 
-        <a href="#">
+        <a href="#" class="no-underline">
             <div id="ddf" type="button"
                 class=" p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
                 onclick="Close()" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -146,15 +146,14 @@
                 @foreach (session('Admin') as $item)
                     <li>
                         <a href="{{ route('folders', encrypt($item->role)) }}"
-                            class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700"><i class="mdi mdi-circle"></i>&nbsp;&nbsp;{{ $item->role }}</a>
-                            
+                            class="flex items-center w-full p-2 no-underline transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700"><i class="mdi mdi-circle"></i>&nbsp;&nbsp;{{ $item->role }}</a>
                     </li>
                 @endforeach
             </ul>
         </a>
 
         </div>
-        <a href="{{ route('lihat') }}">
+        <a href="{{ route('lihat') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -162,11 +161,11 @@
                     <path
                         d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
                 </svg>
-                <span class="text-[15px] ml-4 text-gray-200">Admin</span>
+                <span class="text-[15px] ml-4 text-gray-200 no-underline">Admin</span>
             </div>
         </a>
 
-        <a href="{{ route('listStaf') }}">
+        <a href="{{ route('listStaf') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +180,7 @@
         </a>
 
         <hr class="my-2 text-gray-600">
-        <a href="{{ route('profile') }}">
+        <a href="{{ route('profile') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +194,7 @@
         </a>
 
 
-        <a href="{{ route('logout') }}">
+        <a href="{{ route('logout') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +255,7 @@
 
 
 
-        <a href="{{ route('/') }}">
+        <a href="{{ route('/') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -268,7 +267,7 @@
             </div>
         </a>
 
-        <a href="{{ route('listStaf') }}">
+        <a href="{{ route('listStaf') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -282,7 +281,7 @@
             </div>
         </a>
 
-        <a href="{{ route('folder') }}">
+        <a href="{{ route('folder') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -295,7 +294,7 @@
         </a>
 
         <hr class="my-2 text-gray-600">
-        <a href="{{ route('profile') }}">
+        <a href="{{ route('profile') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
@@ -308,7 +307,7 @@
 
             </div>
         </a>
-        <a href="{{ route('logout') }}">
+        <a href="{{ route('logout') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
@@ -365,7 +364,7 @@
 
             <hr class="my-2 text-gray-600">
         </div>
-        <a href="{{ route('/') }}">
+        <a href="{{ route('/') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -378,7 +377,7 @@
         </a>
 
 
-        <a href="{{ route('server') }}">
+        <a href="{{ route('server') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -391,7 +390,7 @@
         </a>
         </a>
         <hr class="my-2 text-gray-600">
-        <a href="{{ route('profile') }}">
+        <a href="{{ route('profile') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -403,7 +402,7 @@
 
             </div>
         </a>
-        <a href="{{ route('logout') }}">
+        <a href="{{ route('logout') }}" class="no-underline">
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <svg class="w-6 h-6 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
