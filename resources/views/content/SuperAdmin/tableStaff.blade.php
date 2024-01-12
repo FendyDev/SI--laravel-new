@@ -3,7 +3,7 @@
     <div class="container px-2 ">
         <h2 class="mt-4 mb-4 text-xl font-bold text-gray-900 light:text-black">Data Staff</h2>
         <!-- Button trigger modal -->
-        <button title="Tambah" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button title="Tambah" type="button" id="btntambahAkun" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Akun +
         </button>
 
@@ -79,11 +79,9 @@
                                         placeholder="Password" required>
                                 </div>
                                 <div class="w-full">
-                                    <label for="rl"
+                                     <label for="optionStatus"
                                         class="block mb-2 text-sm font-medium text-white">Status</label>
-                                    <input type="text" name="role" id="rl"
-                                        class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="Status" required>
+                                    <select name="role" id="optionStatus" class="cursor-pointer bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"></select>
                                 </div>
                                 <div class="w-full">
                                     <label for="disabled-input-2"
@@ -307,6 +305,19 @@
     </div>
 
     <script>
+	document.getElementById('btntambahAkun').addEventListener('click', function (event) {
+            fetch('{{ route("getData") }}').then(response => response.json()).then(data => {
+                const selectData = document.getElementById('optionStatus');
+                selectData.innerHTML = '';
+                data.forEach(element => {
+                    console.log(element.role);
+                    const option = document.createElement('option');
+                    option.value = element.role;
+                    option.text = element.role;
+                    selectData.appendChild(option);
+                })
+            })
+        })
         // set the modal menu element
         const $targetEl = document.getElementById('modalEl');
 

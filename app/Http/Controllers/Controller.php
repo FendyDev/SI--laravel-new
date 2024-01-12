@@ -16,6 +16,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+    public function getData()
+    {
+        $data = Admin::where('level', 'Admin')->get();
+        return response()->json($data);
+    }
     public function Auth(Request $request)
     {
         $request->validate([

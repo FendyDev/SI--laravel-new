@@ -27,6 +27,7 @@ Route::redirect('/', 'login');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('Auth', [Controller::class, 'Auth'])->name('Auth');;
 
+Route::get('/getData', [Controller::class, 'getData'])->name('getData');
 //! Route for logout
 Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
