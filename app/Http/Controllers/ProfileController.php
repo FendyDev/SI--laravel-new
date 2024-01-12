@@ -49,7 +49,7 @@ class ProfileController extends Controller
                 $user->update([
                     'username' => $request->username,
                     'nama_lengkap' => $request->nama_lengkap,
-                    'password' => $request->password,
+                    'password' => bcrypt($request->password),
                     'image' => $filename
                 ]);
             }
@@ -71,7 +71,7 @@ class ProfileController extends Controller
                 $user->update([
                     'username' => $request->username,
                     'nama_lengkap' => $request->nama_lengkap,
-                    'password' => $request->password,
+                    'password' => bcrypt($request->password),
                     'image' => $filename
                 ]);
             }
