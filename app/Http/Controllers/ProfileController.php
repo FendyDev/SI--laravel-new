@@ -45,11 +45,12 @@ class ProfileController extends Controller
             } else {
                 $filename = Auth::guard('web')->user()->image;
             }
-            if ($filename) {
+            $cekpw = $request->filled('password');
+            if ($filename || $cekpw) {
                 $user->update([
                     'username' => $request->username,
                     'nama_lengkap' => $request->nama_lengkap,
-                    'password' => $request->password,
+                    'password' => bycript($request->password),
                     'image' => $filename
                 ]);
             }
@@ -67,11 +68,12 @@ class ProfileController extends Controller
             } else {
                 $filename = Auth::guard('web')->user()->image;
             }
-            if ($filename) {
+            $cekpw = $request->filled('password');
+            if ($filename || $cekpw) {
                 $user->update([
                     'username' => $request->username,
                     'nama_lengkap' => $request->nama_lengkap,
-                    'password' => $request->password,
+                    'password' => bycript($request->password),
                     'image' => $filename
                 ]);
             }
